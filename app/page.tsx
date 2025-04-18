@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useEffect } from 'react'
 import Image from 'next/image';
 import '@vidstack/react/player/styles/base.css';
@@ -94,7 +93,6 @@ const page = () => {
             </div>
         </div>
         <Section>
-          {/* <h2 className="text-xl font-bold">About</h2> */}
           <p className='font-semibold'>
             {RESUME_DATA.about}
           </p>
@@ -110,14 +108,6 @@ const page = () => {
             ))}
           </div>
         </Section>
-        {/* <Section>
-          <h2 className="text-xl font-bold">Skills</h2>
-          <div className="flex flex-wrap gap-1">  
-            {RESUME_DATA.skills.map((skill) => {
-              return <Badge key={skill}>{skill}</Badge>;
-            })}
-          </div>
-        </Section> */}
         <Section id='currentlyBuilding'> 
           <h2 className="text-xl font-bold">Currently building</h2>
           {RESUME_DATA.currentlyBuilding.map((currentlyBuilding) => {
@@ -125,9 +115,6 @@ const page = () => {
               <Card key={currentlyBuilding.name}>
                 <CardHeader>
                   <div className="flex items-center gap-x-3">
-                    {currentlyBuilding.logo && (
-                      <Image src={currentlyBuilding.logo} alt={`${currentlyBuilding.name} logo`} className="w-10 h-10 rounded-lg object-contain" />
-                    )}
                     <div className='flex-grow'>
                       <div className="flex items-center justify-between gap-x-2 text-base">
                         <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
@@ -180,83 +167,62 @@ const page = () => {
             );
           })}
         </Section>
-        <Section id='awards'> 
-          <h2 className="text-xl font-bold">Awards </h2>
-          {RESUME_DATA.awards.map((award) => {
+        <Section id='All Projects'> 
+          <h2 className="text-xl font-bold">My Projects</h2>
+          {RESUME_DATA.My_Projects.map((currentlyBuilding) => {
             return (
-              <Card key={award.name} className="w-full mb-4">
+              <Card key={currentlyBuilding.name}>
                 <CardHeader>
                   <div className="flex items-center gap-x-3">
-                    {award.logo && (
-                      <Image src={award.logo} alt={`${award.name} logo`} className="w-12 h-12 rounded-lg object-contain" />
-                    )}
-                    <div className="flex-grow">
+                    <div className='flex-grow'>
                       <div className="flex items-center justify-between gap-x-2 text-base">
                         <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                          <a className="hover:underline max-w-[300px]" href={award.link} target="_blank" rel="noopener noreferrer">
-                            {award.name}
+                          <a className="hover:underline max-w-[300px]" href={currentlyBuilding.link} target="_blank" rel="noopener noreferrer">
+                            {currentlyBuilding.name}
                           </a>
-                        </h3>
-                        <div className="text-sm tabular-nums text-gray-500">
-                          {award.date}
+                          </h3>
+                          <div className="text-sm tabular-nums text-gray-500">
+                            {currentlyBuilding.date}
+                          </div>
                         </div>
+
+                        <h4 className="font-mono text-sm leading-none max-w-[500px]">
+                          {currentlyBuilding.title}
+                        </h4>
                       </div>
-                      <h4 className="font-mono text-sm leading-none max-w-[500px] mt-1">
-                        {award.title}
-                      </h4>
-                    </div>
                   </div>
                 </CardHeader>
-        
                 <CardContent className="flex flex-col mt-2 gap-4">
                   <p className='text-xs'>
-                    {award.description}
+                    {currentlyBuilding.description}
                   </p>
-                  {/* {award.videoLink && (
-                    <MediaPlayer title={award.name} src={award.videoLink}>
-                      <MediaProvider />
-                      <PlyrLayout icons={plyrLayoutIcons}/>
-                    </MediaPlayer>
-                  )} */}
+                  {currentlyBuilding.imageLink  && (
+                    <img src={currentlyBuilding.imageLink} alt={currentlyBuilding.name} className="w-full h-auto rounded-lg" />
+                  )}
                   <span className="inline-flex gap-x-1">
-                    {award.badges.map((badge) => (
-                      <Badge
-                        variant="secondary"
-                        className="align-middle text-xxs"
-                        key={badge}
-                      >
-                        {badge}
-                      </Badge>
-                    ))}
-                  </span>
+                        {currentlyBuilding.badges.map((badge) => (
+                        <Badge
+                            variant="secondary"
+                            className="align-middle text-xxs"
+                            key={badge}
+                        >
+                            {badge}
+                        </Badge>
+                        ))}
+                    </span>
                 </CardContent>
-        
+
                 <CardFooter>
-                  {/* <Button>
-                    <a href={award.projectDetailsLink} target="_blank" rel="noopener noreferrer">
-                      View details
+                  <Button>
+                    <a href={currentlyBuilding.projectDetailsLink} target="_blank" rel="noopener noreferrer">
+                        View details
                     </a>
-                  </Button> */}
+                  </Button>
                 </CardFooter>
               </Card>
             );
           })}
         </Section>
-        {/* <Section id='notableShoutouts'>
-          <h2 className="text-xl font-bold">Notable Shoutouts</h2>
-          {RESUME_DATA.notableShoutouts.map((shoutout) => (
-            <Card key={shoutout.name}>
-              <CardHeader>
-                <h3 className="font-semibold">{shoutout.name}</h3>
-              </CardHeader>
-              <CardContent>
-                <blockquote className="twitter-tweet">
-                  <a href={shoutout.tweetLink}>View Tweet</a>
-                </blockquote>
-              </CardContent>
-            </Card>
-          ))}
-        </Section> */}
         <Section id='education'> 
           <h2 className="text-xl font-bold">Education</h2>
           {RESUME_DATA.education.map((education) => {
@@ -337,62 +303,6 @@ const page = () => {
               );
           })}
         </Section>
-        {/* <Section id='data-science'> 
-          <h2 className="text-xl font-bold">Data Science</h2>
-          {RESUME_DATA.dataScience.map((item) => {
-            return (
-              <Card key={item.projectName}>
-                <CardHeader>
-                  <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                      <a className="hover:underline" href={item.projectLink} target="_blank" rel="noopener noreferrer">
-                        {item.projectName}
-                      </a>
-
-                      <span className="inline-flex gap-x-1">
-                        {item.badges.map((badge) => (
-                          <Badge
-                            variant="secondary"
-                            className="align-middle text-xs"
-                            key={badge}
-                          >
-                            {badge}
-                          </Badge>      
-                        ))}
-                      </span>
-                    </h3>
-                  </div>
-                </CardHeader>
-                <CardContent className="text-xs">
-                  {item.projectDescription}
-                </CardContent>
-                <CardFooter>
-                  <Button>
-                    <a href={item.projectLink} target="_blank" rel="noopener noreferrer">
-                        View details
-                    </a>
-                  </Button>
-                </CardFooter>
-              </Card>
-            );
-          })}
-        </Section> */}
-        {/* <Section id='music'> 
-          <h2 className="text-xl font-bold">Music</h2>
-          {RESUME_DATA.music.map((award) => {
-            return (
-              <Card key={award.awardName}>
-                <CardHeader>
-                  <h3 className="font-semibold">{award.awardName}</h3>
-                  <div className="text-sm text-gray-500">{award.year}</div>
-                </CardHeader>
-                <CardContent>
-                  {award.description}
-                </CardContent>
-              </Card>
-            );
-          })}
-        </Section> */}
       </section>
 
       <CommandMenu

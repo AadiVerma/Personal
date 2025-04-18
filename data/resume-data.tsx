@@ -1,26 +1,29 @@
-import { GitHubIcon, LinkedInIcon, XIcon, InstagramIcon ,LeetCodeIcon} from "@/components/icons";
-import { CityUniversityLogo, EthGlobalLogo, LB,
-  Procol, IEEELogo, ThirdwebLogo, Cosensys, DeveloperDao, Apple, Olympiad, Arta, Cryptoblk, HKIS, CISM, CAIS, VideoFast, TextBehindImage, Next, RT } from "@/public";
+import { GitHubIcon, LinkedInIcon, XIcon, InstagramIcon, LeetCodeIcon } from "@/components/icons";
+import {
+  CityUniversityLogo, EthGlobalLogo, LB,
+  Procol, IEEELogo, ThirdwebLogo, Cosensys, DeveloperDao, Apple, Olympiad, Arta, Cryptoblk, HKIS, CISM, CAIS, VideoFast, TextBehindImage, Next, RT
+} from "@/public";
+import { BadgeSwissFranc } from "lucide-react";
 
 export const RESUME_DATA = {
   name: "Aditya Verma",
   initials: "AV",
-  location: "India, IND",    
+  location: "India, IND",
   locationLink: "https://www.google.com/maps/place/India",
   about: "Hey, I’m Aditya — a 20-year-old tech enthusiast and self-taught developer from India, with a strong interest in system-level problem solving, competitive programming, and building practical software solutions. I spend a lot of time sharpening my skills on platforms like LeetCode, diving into DSA, I’m fascinated by how systems work under the hood.I’m currently focused on growing as a full-stack developer, Always keeping performance and user experience in mind. I believe in learning by doing and I’m always curious about what I can build next",
-  aboutBulletPoints: [   
+  aboutBulletPoints: [
     // "Created my startup videofast.gg - #2 Product of the Day on Product Hunt, 1.6k users",
     // "Created text-behind-image, a free tool with 30K users and #1 Product of the Day",
     // "Won international hackathons, eg. Apple Swift Student Challenge, ETHGlobal Online + more",   
     // "1k followers on X/Twitter",
     "Challenging myself to build a product",
     "Always learning new things",
-    "Looking for opportunities to grow and learn",        
+    "Looking for opportunities to grow and learn",
   ],
   avatarUrl1: "https://pbs.twimg.com/profile_images/1906680892556533760/NIswDg-F_400x400.jpg",
   avatarUrl2: "https://avatars.githubusercontent.com/u/122523624?v=4",
   personalWebsiteUrl: "https://aditya7.com",
-  contact: {  
+  contact: {
     email: null,
     social: [
       {
@@ -38,16 +41,16 @@ export const RESUME_DATA = {
         url: "https://www.linkedin.com/in/adityaverma7099/",
         icon: LinkedInIcon,
       },
-      {   
+      {
         name: "Instagram",
         url: "https://www.instagram.com/aditya946verma/",
         icon: InstagramIcon,
-      },   
-      {   
+      },
+      {
         name: "GitHub",
         url: "https://github.com/AadiVerma/",
         icon: GitHubIcon,
-      },   
+      },
     ],
   },
   skills: [
@@ -70,137 +73,73 @@ export const RESUME_DATA = {
       link: "https://www.github.com/AadiVerma",
       badges: ["CRM", "BaaS"],
       title: "Zerobase CRM",
-      logo: LB,
+      // logo: LB,
       date: "Since January 2025",
       description:
         "Platform connecting users with local businesses, improving discoverability and supporting community commerce. Onboarded 50+ businesses, attracted 1000+ unique users, and achieved 10k monthly visitors.",
       videoLink: "https://youtu.be/yaTP3GnzL34?si=o5-3GylMMRCoXDT2",
       projectDetailsLink: "https://github.com/AadiVerma",
-    },
-    {
-      name: 'Launch Base',
-      link: 'https://github.com/aditya000099/launchbase',
-      badges: ["SaaS", "Starter Code"],
-      title: "Starter code for your next SaaS project. Setup in just 5 mins!",
-      logo: LB,
-      date: "Since September 2024",
-      description: "A modern SaaS starter template built with Next.js 13+, Appwrite, Stripe, and more. Get your SaaS project up and running in minutes!",
-      videoLink: "https://www.youtube.com/watch?v=A1UsaEWjIqA",
-      projectDetailsLink: "https://github.com/aditya000099/launchbase",
-    },
-    {
-      name: 'Studyverse',
-      link: 'https://github.com/aditya000099/svfrontend',
-      badges: ["Learning Platform", "AI-Powered", "SaaS"],
-      title: "Empowering Learners to Master New Skills Quickly",
-      logo: LB,
-      date: "Since October 2024",
-      description: "Studyverse is an innovative platform designed to help learners efficiently start and master new skills. Built using ReactJS, Appwrite, Stripe, and the MERN stack, it integrates AI to personalize the learning experience.",
-      videoLink: "https://www.youtube.com/watch?v=_InJOT9042E",
-      projectDetailsLink: "https://github.com/aditya000099/launchbase",
-    },
-    {
-      name: 'AstroGuide',
-      link: 'https://github.com/aditya000099/svfrontend',
-      badges: ["Astrology", "AI-Driven Insights", "Educational"],
-      title: "Your AI-Powered Guide to the Cosmos",
-      logo: LB,
-      date: "Since October 2024",
-      description: "AstroGuide is an AI-powered platform offering personalized astrology insights and educational resources about celestial phenomena. Developed with ReactJS, Appwrite, Stripe, and the MERN stack, it blends technology with ancient wisdom.",
-      videoLink: "https://youtu.be/qmsNEKgc99c",
-      projectDetailsLink: "https://github.com/aditya000099/launchbase",
-    },
-    
-    // {
-    //   name: 'VideoFast (videofast.gg)',
-    //   link: 'https://videofast.gg',
-    //   badges: ["Startup", "Remotion", "Video editing tool"],
-    //   title: "A super easy to use online video editor",
-    //   logo: VideoFast,
-    //   date: "Since Janurary 2024",
-    //   description: "I've started building VideoFast since the beginning of 2024, while working on schoolwork at the same time.  From iterating and constantly improving the design and the usability of the video editor, it has evolved into the easiest video editor that you will ever use.  Currently, VideoFast has got the #2 Product of the Day on Product Hunt and has over 500 regular users using the editor.",
-    //   videoLink: "https://www.youtube.com/watch?v=b1WPCgIV_0I&t=6s",
-    //   projectDetailsLink: "https://producthunt.com/posts/videofast",
-    // },
+    }
   ],
-  awards: [
+  My_Projects: [
     {
-      name: "Robotex India",
-      link: "https://www.robotex.com/",
-      badges: ["Competition", "In Person", "12+ teams"],
-      title: "Gold medalist award",
-      logo: RT,
-      date: "9/2023",
-      description: "Robotics competition where we built a Sumo robot that attacks and takes out other robots from a ring. Stood first in the competiton competing with 12+ teams",
-      // videoLink: "https://www.youtube.com/watch?v=OYj3Vru7Y4g",
-      // projectDetailsLink: "https://github.com/rexanwong/proof-of-workout-protocol",
+      name: "FitWave",
+      link: "https://www.github.com/AadiVerma/FitWave",
+      badges:["Fitness","Ai","Full Stack"],
+      title: "FitWave",
+      date:"September 2024 - November 2024",
+      description:
+        "FitWave is a fitness app that uses AI to create personalized workout plans and nutrition guides. It tracks user progress and provides real-time feedback. The app is designed to help users achieve their fitness goals efficiently.",
+      imageLink: "https://private-user-images.githubusercontent.com/122523624/361158646-719f30cd-47f9-4675-b79b-7f26e56ba346.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDQ5Nzg3OTIsIm5iZiI6MTc0NDk3ODQ5MiwicGF0aCI6Ii8xMjI1MjM2MjQvMzYxMTU4NjQ2LTcxOWYzMGNkLTQ3ZjktNDY3NS1iNzliLTdmMjZlNTZiYTM0Ni5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDE4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQxOFQxMjE0NTJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT03YjkyMmYyYmNkMTRhODQxOGNmODQwNzZmOTJlYjE4YzMzMmY4ZjJlMTRhZDUwNjhjNjg5NGNiNmI0NjM2Y2RmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.qg3NwlTgUE2vhwd7tSUzDgSRBSWFKpazQKYqnD3q6J4",
+      projectDetailsLink: "https://github.com/AadiVerma/FitWave",
     },
-    // {
-    //   name: "ETHGlobal Online",
-    //   link: "https://x.com/ETHGlobal/status/1717944376528351327?s=20",
-    //   badges: ["Hackathon", "Online", "500+ Teams"],
-    //   title: "Top 10 Finalistis (Winning team) + Mantle Best UX Award",
-    //   logo: EthGlobalLogo,
-    //   date: "10/2023",
-    //   description: "ETHOnline is a three week long online hackathon with over $200,000 USD in prizes as well as a series of curated summits, celebrating some of the most significant happenings & learnings from the past 12 months in web3.  The hackathon is focused on building Ethereum based applications with different bounties' tools and technologies.  I built Koinu, an npm library that allows developers to include a cross chain experience within their dapps.  This project was selected as a finalist project, along with 9 other finalist projects, out of 500 projects.  Being the only under-18 to win the competition, and competiting against the best and most hardcore developers in the Web3 space, out of 515 projects, I learnt a lot more about Web3 and blockchain development during the course of the hackathon and it encouraged me to build blockchain applications more : the fact that I could compete, as a 15 year old, at the time, against the top developers of the Web3 space, and win, I am looking forward to build more applications for everyday users of Web3",
-    //   videoLink: " https://www.youtube.com/watch?v=uNC-Auuz1T4",
-    //   projectDetailsLink: "https://ethglobal.com/showcase/koinu-x8ced",
-    // },
-    // {
-    //   name: "Not Another Virtual Hackathon (NAVH) by Cosensys",
-    //   link: "https://navhackathon.consensys.io/",
-    //   badges: ["Hackathon", "Online", "70+ Projects"],
-    //   title: "Winner of the IYKYK Linea Edition",
-    //   logo: Cosensys,
-    //   date: "9/2023",
-    //   description: "Consensys, one of the biggest blockchain companies, hosted NAVH: Not Another Virtual Hackathon beginning July 6th, 2023, for technical and non-technical builders to bring their skills to the table. Builders from anywhere in the world can join to compete for over $115,500 in bounties, using Cosensys products to build something.  I built Proof of Workout Protocol : a dApp on Linea (a blockchain developed by leading blockchain company Cosensys) designed to motivate and reward physical fitness through a gamified system of quests and token-based incentive.  ",
-    //   videoLink: "https://www.youtube.com/watch?v=OYj3Vru7Y4g",
-    //   projectDetailsLink: "https://github.com/rexanwong/proof-of-workout-protocol",
-    // },
-    // {
-    //   name: "Developer Dao & Mina Protocol Hackathon",
-    //   link: "https://twitter.com/rexan_wong/status/1681156987143462912",
-    //   badges: ["Hackathon", "Online", "40+ Projects"],
-    //   title: "1st Place",
-    //   logo: DeveloperDao,
-    //   date: "6/2023",
-    //   description: "Developer DAO, the biggest Web3 Developer Organisation, and Mina Protocol, a zero knowledge based blockchain with a market cap of $800 million USD, ran a week-long, remote hackathon with ~ $10,000 in prizes to be won in USDC, Mina Token and CODE.  The hackathon is focused on building zero-knowledge applications on Mina Protocol with SnarkyJS.   I built a privacy-focused decentralized zkApp that aims to enable anonymous and secure protests where participants can join and support various causes while preserving their privacy.  This hackathon was the most hardcore hackathon I've participated in : joining the hackathon, knowing very little about zero-knowledge (zk) technology, let alone building zk technology.  Throughout the process, I had to dive deep and learn all these new concepts while building my zkApp.  In the end, my project won first place in the hackathon, out of 40 other projects, and this victory provoked me to go further deeper into this tough concept of zero knowledge technology.",
-    //   videoLink: "https://www.youtube.com/watch?v=UkD0pTwgjBg&t=481s", 
-    //   projectDetailsLink: "https://github.com/rexanwong/zk-protest",
-    // },
-    // {
-    //   name: "ETHGlobal Waterloo",
-    //   link: "https://x.com/rexan_wong/status/1673074124833402880?s=20",
-    //   badges: ["Hackathon", "In Person", "200+ teams"],
-    //   title: "Best Use of Metamask SDK",
-    //   logo: EthGlobalLogo,
-    //   date: "6/2023",
-    //   description: "ETHGlobal Waterloo is a 24hr long In person hackathon at Waterloo, CA, with over $200,000 USD in prizes as well as a series of curated summits, celebrating some of the most significant happenings & learnings from the past 12 months in web3.  The hackathon is focused on building Ethereum based applications with different bounties' tools and technologies.  The entire hackathon was an amazing learning process to me, especially for learning more about blockchain development - throughout the entire hackathon, I had many chances to talk face to face with top leaders and developers in the Web3 space - all these people, all the other teams, together in one big room in the town of Waterloo, building and sharing a passion together.  An even bigger impact personally was being able to travel all the way from where I live, Hong Kong, all the way to Waterloo, Ontario, Canada, and hack along with two University of Waterloo students, herby gaining exposure to university life and working as a development team.  We built a Video-sharing platform powered by ERC-6551 tokenbound-accounts, empowering the content creator economy through advertisers' staking in smart contracts.",
-    //   videoLink: null, 
-    //   projectDetailsLink: "https://ethglobal.com/showcase/videre-wk314",
-    // },
-    // {
-    //   name: "Apple Swift Student Challenge",
-    //   link: "https://twitter.com/rexan_wong/status/1656085283836940288",
-    //   badges: ["Hackathon", "Online", "13500+ Submissions"],
-    //   title: "WWDC23 Scholar",
-    //   logo: Apple,
-    //   date: "Q2 2023",
-    //   description: "The Swift Student Challenge at WWDC (Worldwide Developers Conference) is an annual competition organized by Apple to celebrate the ingenuity and expertise of student developers using Swift.  Apple picks around 300 applications out of a pool of more than 10,000+ applicants to win, and I was one of the 300 applicants to win the challenge.   I built an iOS app/game that challenges users to find an image of a random word generated by the app in their photo album, then used machine learning models to verify that the image being selected matches the random word.",
-    //   videoLink: null, 
-    //   projectDetailsLink: "https://github.com/rexanwong/photorush",
-    // },
-  ],
-  notableShoutouts: [
     {
-      name: "None till now",
-      tweetLink: "https://twitter.com/adityx3",
+      name: "Talentify",
+      link: "https://talentify.netlify.app/",
+      badges:["Talent","Full Stack","MERN"],
+      title: "Talentify",
+      date:"January 2025",
+      description:
+        "Talentify is an innovative platform designed to bridge the gap between talented individuals and opportunities that match their skills. Whether you're an artist, developer, writer, musician, or any kind of creative or professional, Talentify helps you showcase your abilities and connect with the right audience",
+      imageLink: "https://private-user-images.githubusercontent.com/122523624/405497213-68063040-9772-4054-b182-5d1685a7e7b8.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDQ5Nzg5NDAsIm5iZiI6MTc0NDk3ODY0MCwicGF0aCI6Ii8xMjI1MjM2MjQvNDA1NDk3MjEzLTY4MDYzMDQwLTk3NzItNDA1NC1iMTgyLTVkMTY4NWE3ZTdiOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDE4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQxOFQxMjE3MjBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xODFlYzZhNDI2ZGVlOTZhNDljZWY5NmUwZTAzY2QxNDBlOTlkOWZmYjJkYzVkYTEyYTcwMTFjMzRlYjQ5NDVjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.F45LMRlb2pCzGslicskn5gd46449veK7Jz9v1Tq-hU0",
+      projectDetailsLink: "https://github.com/AadiVerma/Talentify",
     },
-    // {
-    //   name: "Steven Tey, former developer advocate at Vercel:",
-    //   tweetLink: "https://twitter.com/steventey/status/1843026678580469916",
-    // },
+    {
+      name: "Mines",
+      link: "https://mines-flax.vercel.app/",
+      badges:["Mines","Gambling","Next Js","Fun"],
+      title: "Mines",
+      date:"June 2024",
+      description:
+        "Mines is a minimalist, fast-paced game where players uncover safe tiles while avoiding hidden mines. Inspired by the popular game on Stake.com, it challenges your luck and strategy in every click.",
+      imageLink: "https://private-user-images.githubusercontent.com/122523624/435188420-69b3988c-5177-4941-a572-aa18440cd03a.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDQ5Nzk4MzUsIm5iZiI6MTc0NDk3OTUzNSwicGF0aCI6Ii8xMjI1MjM2MjQvNDM1MTg4NDIwLTY5YjM5ODhjLTUxNzctNDk0MS1hNTcyLWFhMTg0NDBjZDAzYS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDE4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQxOFQxMjMyMTVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00YzE4ZTg3ZWEyZDk2MTcyY2U5Yjc0NDE3ZmEzYWI4ODU2MGI5OTg4ZGI3ZDgwOGNjODA0YWY0MDA0N2EwMmUzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.MXL7SMEjjgdmnu-D5w9U-nqZ7Vqb7OSRZ_Q_vmRvkIs",
+      projectDetailsLink: "https://github.com/AadiVerma/Mines",
+    },
+    {
+      name: "Petnest",
+      link: "https://pet-nest.vercel.app/",
+      badges:["Pets","Full Stack","Next Js","NestJs"],
+      title: "Petnest",
+      date:"July 2024",
+      description:
+        "PetNest is a pet adoption and buying platform where users can find their perfect furry companions and even contribute funds to support pets in need of care and shelter.",
+      imageLink: "https://private-user-images.githubusercontent.com/122523624/435190402-914412c1-97c8-4fcf-8a85-7f92db54e7ce.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDQ5ODAzMjMsIm5iZiI6MTc0NDk4MDAyMywicGF0aCI6Ii8xMjI1MjM2MjQvNDM1MTkwNDAyLTkxNDQxMmMxLTk3YzgtNGZjZi04YTg1LTdmOTJkYjU0ZTdjZS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDE4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQxOFQxMjQwMjNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01MDRkYzUxOTkzN2E3MWJlMDVlYjkwOTFkM2E3MGQ5ZGUxMzA2ZmMzMTEyMzU2YzU0OWU1MjQwMTgyYzg0M2QxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.7o4pZassw8J04gX72hnKK-DxSAKGCxWY2ghWIdYPrcA",
+      projectDetailsLink: "https://github.com/AadiVerma/PETNEST",
+    },
+    {
+      name: "Tic Tac Toe",
+      link: "https://github.com/AadiVerma",
+      badges:["Fun","Full Stack","Game","Web-Sockets"],
+      title: "Tic-Tac-Toe",
+      date:"July 2024",
+      description:
+        "Tic Tac Toe is a classic 2-player game built for quick fun and strategy, where players take turns marking Xs and Os to win by aligning three in a row.",
+      imageLink: "https://private-user-images.githubusercontent.com/122523624/351199884-73933714-d355-4348-8105-2bb2390bea08.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDQ5ODA1NjEsIm5iZiI6MTc0NDk4MDI2MSwicGF0aCI6Ii8xMjI1MjM2MjQvMzUxMTk5ODg0LTczOTMzNzE0LWQzNTUtNDM0OC04MTA1LTJiYjIzOTBiZWEwOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDE4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQxOFQxMjQ0MjFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kYjE3YWIxNjAxMjRiN2QyMjk1NmMxMzBmMTdlMGUwM2ZlNWY5YWQwNDlkMzk0MTk2YzVkN2UzMWY2ZDFhZGYxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.tHSFbRsVO660jLfWzGlf4FOYbnvXVDztnCdlxDpxB9o",
+      projectDetailsLink: "https://github.com/AadiVerma/RealTime-Tic-Tac-Toe",
+    }
+
   ],
+
   education: [
     // {
     //   school: "Hong Kong International School",
@@ -217,13 +156,13 @@ export const RESUME_DATA = {
       end: "2026",
       activities: "Bachelors in Computer Science and Engineering",
       logo: CISM
-    }, 
+    },
   ],
   work: [
     {
       company: "Procol",
       link: "https://www.procol.io/",
-      badges: [" Ruby on Rails","Backend Developer "],
+      badges: [" Ruby on Rails", "Backend Developer "],
       title: "Software Engineer Intern",
       logo: Procol,
       start: "2025",
