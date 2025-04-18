@@ -100,6 +100,9 @@ const page = () => {
           </p>
 
           <div className='mt-2'>
+            <p>
+            • Software Intern <a href="https://www.procol.io/" target='blank' className='text-purple-700 font-bold'>@Procol</a>
+            </p>
             {RESUME_DATA.aboutBulletPoints.map((item) => (
                 <p className='mb-1'>
                     • {item}

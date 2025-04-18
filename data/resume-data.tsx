@@ -1,51 +1,57 @@
-import { GitHubIcon, LinkedInIcon, XIcon, InstagramIcon } from "@/components/icons";
-import { CityUniversityLogo, EthGlobalLogo, LB, React, IEEELogo, ThirdwebLogo, Cosensys, DeveloperDao, Apple, Olympiad, Arta, Cryptoblk, HKIS, CISM, CAIS, VideoFast, TextBehindImage, Next, RT } from "@/public";
+import { GitHubIcon, LinkedInIcon, XIcon, InstagramIcon ,LeetCodeIcon} from "@/components/icons";
+import { CityUniversityLogo, EthGlobalLogo, LB,
+  Procol, IEEELogo, ThirdwebLogo, Cosensys, DeveloperDao, Apple, Olympiad, Arta, Cryptoblk, HKIS, CISM, CAIS, VideoFast, TextBehindImage, Next, RT } from "@/public";
 
 export const RESUME_DATA = {
-  name: "Aditya Aggarwal",
-  initials: "AA",
+  name: "Aditya Verma",
+  initials: "AV",
   location: "India, IND",    
   locationLink: "https://www.google.com/maps/place/India",
-  about: "Hello! I'm Aditya, a 20-year-old tech enthusiast and solopreneur from India with a strong foundation in blockchain, mobile app development, and full-stack web applications. I’m driven by curiosity and a passion for building impactful solutions—whether it's a SaaS platform, an engaging UI, or a robust backend system. My journey is fueled by a love for innovation, and I'm always exploring ways to create products that stand out.",
+  about: "Hey, I’m Aditya — a 20-year-old tech enthusiast and self-taught developer from India, with a strong interest in system-level problem solving, competitive programming, and building practical software solutions. I spend a lot of time sharpening my skills on platforms like LeetCode, diving into DSA, I’m fascinated by how systems work under the hood.I’m currently focused on growing as a full-stack developer, Always keeping performance and user experience in mind. I believe in learning by doing and I’m always curious about what I can build next",
   aboutBulletPoints: [   
     // "Created my startup videofast.gg - #2 Product of the Day on Product Hunt, 1.6k users",
     // "Created text-behind-image, a free tool with 30K users and #1 Product of the Day",
     // "Won international hackathons, eg. Apple Swift Student Challenge, ETHGlobal Online + more",   
     // "1k followers on X/Twitter",
-    "Challenging myself to build a product every week",
+    "Challenging myself to build a product",
     "Always learning new things",
-    "Ambassador @ RabbleLabs",
-    "Bitcoin Believer"        
+    "Looking for opportunities to grow and learn",        
   ],
-  avatarUrl1: "https://pbs.twimg.com/profile_images/1850581410748248064/gAAItQCq_400x400.jpg",
-  avatarUrl2: "https://avatars.githubusercontent.com/u/96784980?v=4",
-  personalWebsiteUrl: "https://aditya9.com",
+  avatarUrl1: "https://pbs.twimg.com/profile_images/1906680892556533760/NIswDg-F_400x400.jpg",
+  avatarUrl2: "https://avatars.githubusercontent.com/u/122523624?v=4",
+  personalWebsiteUrl: "https://aditya7.com",
   contact: {  
     email: null,
     social: [
       {
+        name: "LeetCode",
+        url: "https://leetcode.com/u/Aadiverma07/",
+        icon: LeetCodeIcon,
+      },
+      {
         name: "X",
-        url: "https://twitter.com/adityx3",
+        url: "https://x.com/KaplishAditya",
         icon: XIcon,
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/realaditya3/",
+        url: "https://www.linkedin.com/in/adityaverma7099/",
         icon: LinkedInIcon,
       },
       {   
         name: "Instagram",
-        url: "https://instagram.com/aditya0x01",
+        url: "https://www.instagram.com/aditya946verma/",
         icon: InstagramIcon,
       },   
       {   
         name: "GitHub",
-        url: "https://github.com/aditya000099",
+        url: "https://github.com/AadiVerma/",
         icon: GitHubIcon,
       },   
     ],
   },
   skills: [
+    "Java",
     "TypeScript",
     "React",
     "NextJS",
@@ -53,27 +59,24 @@ export const RESUME_DATA = {
     "NodeJS",
     "TailwindCSS",
     "ShadcnUI",
-    "Remotion",
     "Supabase",
     "Vercel",
-    "Solidity",
-    "Foundry",
-    "Hardhat",
-    "Thirdweb",
-    "Swift",
+    "Ruby",
+    "Rails",
   ],
   currentlyBuilding: [
-    // {
-    //   name: 'Text Behind Image',
-    //   link: 'https://textbehindimage.rexanwong.xyz',
-    //   badges: ["Free tool", "Design tool"],
-    //   title: "Create text-behind-image designs easily",
-    //   logo: TextBehindImage,
-    //   date: "Since September 2024",
-    //   description: "Creating stunning text-behind-image designs are difficult and there's not many easy-to-use tools online that helps you do that. So I built my own free tool, in 3 hours with AI tools such as cursor.sh, that helps you create these stunning text-behind-image designs easily on your images. Since launching, the tool has gotten 10K users, 2 million views on X/Twitter, #1 Product of the Day on Product Hunt, and notable shoutouts from people like Ryan Hoover, the founder of Product Hunt.",
-    //   videoLink: "https://www.youtube.com/watch?v=3b_Rkv0GYV0",
-    //   projectDetailsLink: "https://producthunt.com/posts/text-behind-image",
-    // },
+    {
+      name: "Zerobase",
+      link: "https://www.github.com/AadiVerma",
+      badges: ["CRM", "BaaS"],
+      title: "Zerobase CRM",
+      logo: LB,
+      date: "Since January 2025",
+      description:
+        "Platform connecting users with local businesses, improving discoverability and supporting community commerce. Onboarded 50+ businesses, attracted 1000+ unique users, and achieved 10k monthly visitors.",
+      videoLink: "https://youtu.be/yaTP3GnzL34?si=o5-3GylMMRCoXDT2",
+      projectDetailsLink: "https://github.com/AadiVerma",
+    },
     {
       name: 'Launch Base',
       link: 'https://github.com/aditya000099/launchbase',
@@ -218,27 +221,16 @@ export const RESUME_DATA = {
   ],
   work: [
     {
-      company: "Freelance",
-      link: "https://github.com/aditya000099",
-      badges: ["Remote"],
-      title: "React native Developer",
-      logo: React,
-      start: "2024",
+      company: "Procol",
+      link: "https://www.procol.io/",
+      badges: [" Ruby on Rails","Backend Developer "],
+      title: "Software Engineer Intern",
+      logo: Procol,
+      start: "2025",
       end: "Present",
       description:
-        "A freelance React native app developer for an AI based app. Made the UI and integrated firebase into it.",
-    },
-    {
-      company: "Freelance",
-      link: "https://github.com/aditya000099",
-      badges: ["Remote"],
-      title: "NextJS Developer",
-      logo: Next,
-      start: "2024",
-      end: "Present",
-      description:
-        "A freelance NextJS developer for an AI based webapp. Made the UI and integrated appwrite into it.",
-    },
+        "Working on backend development using Ruby on Rails. Focused on building reliable, efficient systems and learning by doing.",
+    }
     // {
     //   company: "City University of Hong Kong",
     //   link: "https://www.ee.cityu.edu.hk/prospective_students/Gifted_Education_Fund",

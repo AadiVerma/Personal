@@ -17,6 +17,7 @@ import LB from './lb.png'
 import React from './react-icon.svg'
 import Next from './next.svg'
 import RT from './robotex.jpg'
+import Procol from './Procol.webp'
 
 export {
     ThirdwebLogo,
@@ -26,6 +27,7 @@ export {
     Cosensys,
     DeveloperDao, 
     Apple,
+    Procol,
     Olympiad,
     Arta,
     Cryptoblk,
