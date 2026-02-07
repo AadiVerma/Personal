@@ -204,3 +204,224 @@
   --plyr-live-button-edge-bg: #dc2626;
   --plyr-live-button-edge-color: #f5f5f5;
 }
+
+/* Blog index – subtle background + tight list */
+.blog-index-page {
+  background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(at 0% 0%, hsl(var(--primary) / 0.06) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsl(var(--primary) / 0.04) 0px, transparent 50%),
+    linear-gradient(to bottom, transparent 0%, hsl(var(--background)) 100%);
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+}
+.dark .blog-index-page {
+  background-image:
+    radial-gradient(at 0% 0%, hsl(var(--primary) / 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 80%, hsl(var(--primary) / 0.06) 0px, transparent 45%),
+    linear-gradient(to bottom, transparent 0%, hsl(var(--background)) 100%);
+}
+
+/* Blog article – reading layout & typography */
+.blog-article {
+  --blog-line-height: 1.75;
+  --blog-heading-weight: 600;
+}
+
+.blog-body {
+  font-size: 1.0625rem;
+  line-height: var(--blog-line-height);
+  letter-spacing: 0.01em;
+}
+
+.blog-body h1,
+.blog-body h2,
+.blog-body h3 {
+  scroll-margin-top: 5rem;
+  font-weight: var(--blog-heading-weight);
+  letter-spacing: -0.02em;
+  color: hsl(var(--foreground));
+}
+
+.blog-body h1 { font-size: 1.75rem; margin-top: 2.25rem; margin-bottom: 0.75rem; }
+.blog-body h2 { font-size: 1.375rem; margin-top: 2rem; margin-bottom: 0.5rem; padding-bottom: 0.25rem; border-bottom: 1px solid hsl(var(--border)); }
+.blog-body h3 { font-size: 1.125rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+
+.blog-body p {
+  margin-bottom: 1.25rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.blog-body ul, .blog-body ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+  color: hsl(var(--muted-foreground));
+}
+.blog-body li { margin-bottom: 0.35rem; }
+.blog-body ul { list-style-type: disc; }
+.blog-body ol { list-style-type: decimal; }
+
+.blog-body a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: hsl(var(--primary) / 0.4);
+  transition: text-decoration-color 0.2s, color 0.2s;
+}
+.blog-body a:hover {
+  text-decoration-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+}
+
+.blog-body blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  padding-left: 1.25rem;
+  border-left: 4px solid hsl(var(--primary) / 0.5);
+  background: hsl(var(--muted) / 0.5);
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: hsl(var(--muted-foreground));
+}
+
+.blog-body code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  border-radius: 0.375rem;
+  background: hsl(var(--muted));
+  color: hsl(var(--foreground));
+}
+
+.blog-body pre {
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  background: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+}
+.blog-body pre code {
+  padding: 0;
+  background: transparent;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.blog-body hr {
+  margin: 2rem 0;
+  border: none;
+  height: 1px;
+  background: hsl(var(--border));
+}
+.blog-body img {
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  max-width: 100%;
+  height: auto;
+}
+.blog-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9375rem;
+}
+.blog-body th, .blog-body td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid hsl(var(--border));
+  text-align: left;
+}
+.blog-body th {
+  background: hsl(var(--muted) / 0.6);
+  font-weight: 600;
+}
+
+/* Chronicles admin – Markdown editor theme */
+.chronicles-mde .w-md-editor {
+  --md-editor-background-color: hsl(var(--background));
+  --md-editor-box-shadow-color: transparent;
+  box-shadow: none !important;
+  border-radius: 0.75rem;
+  border: 1px solid hsl(var(--border));
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  overflow: hidden;
+}
+.chronicles-mde .w-md-editor-toolbar {
+  background: hsl(var(--muted) / 0.8) !important;
+  border-bottom: 1px solid hsl(var(--border));
+  border-radius: 0.75rem 0.75rem 0 0;
+  padding: 8px 12px;
+  gap: 4px;
+  min-height: 44px;
+  align-items: center;
+}
+.chronicles-mde .w-md-editor-toolbar ul {
+  gap: 2px;
+}
+.chronicles-mde .w-md-editor-toolbar li > button {
+  color: hsl(var(--muted-foreground));
+  border-radius: 0.5rem;
+  padding: 6px 8px;
+  transition: color 0.15s, background 0.15s;
+}
+.chronicles-mde .w-md-editor-toolbar li > button:hover {
+  color: hsl(var(--foreground));
+  background: hsl(var(--accent));
+}
+.chronicles-mde .w-md-editor-toolbar li > button:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+.chronicles-mde .w-md-editor-content {
+  border-radius: 0 0 0.75rem 0.75rem;
+  background: hsl(var(--background));
+}
+.chronicles-mde .w-md-editor-area {
+  border-radius: 0;
+}
+/* Do not override .w-md-editor-text, .w-md-editor-text-pre, .w-md-editor-text-input – library defaults keep cursor aligned */
+.chronicles-mde .w-md-editor-preview {
+  padding: 1.25rem 1.5rem !important;
+  background: hsl(var(--muted) / 0.25) !important;
+  color: hsl(var(--foreground)) !important;
+  box-shadow: inset 1px 0 0 0 hsl(var(--border));
+}
+.chronicles-mde .w-md-editor-preview .wmde-markdown {
+  color: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+.chronicles-mde .w-md-editor-preview .wmde-markdown h1,
+.chronicles-mde .w-md-editor-preview .wmde-markdown h2,
+.chronicles-mde .w-md-editor-preview .wmde-markdown h3 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+.chronicles-mde .w-md-editor-preview .wmde-markdown code {
+  background: hsl(var(--muted));
+  padding: 0.15em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+.chronicles-mde .w-md-editor-preview .wmde-markdown pre {
+  background: hsl(var(--muted));
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+.dark .chronicles-mde .w-md-editor {
+  --md-editor-background-color: hsl(var(--background));
+}
+.dark .chronicles-mde .w-md-editor-toolbar {
+  background: hsl(var(--muted) / 0.6) !important;
+}
+.dark .chronicles-mde .w-md-editor-toolbar li > button:hover {
+  background: hsl(var(--accent));
+}
+.chronicles-mde .w-md-editor-bar {
+  background: hsl(var(--border));
+  border-radius: 0 0 0.75rem 0.75rem;
+  height: 10px;
+}
+.chronicles-mde .w-md-editor-bar:hover {
+  background: hsl(var(--muted-foreground) / 0.25);
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider"
+import { HotToaster } from "@/components/toaster"
 import "./globals.css";
 import { RESUME_DATA } from "@/data/resume-data";
 
@@ -27,6 +28,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <HotToaster />
           </ThemeProvider>
         </body>
     </html>
