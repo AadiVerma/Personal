@@ -3,8 +3,9 @@ import Link from "next/link";
 import { BlogEditor } from "@/app/blog/admin/blog-editor";
 import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon, InfoIcon, BookMarkedIcon } from "lucide-react";
+import { getPostBySlug } from "@/lib/blog";
 
-type Props = { searchParams: Promise<{ key?: string }> };
+type Props = { searchParams: Promise<{ key?: string; slug?: string }> };
 
 export const metadata = {
   title: "Chronicles · Admin",
@@ -12,12 +13,14 @@ export const metadata = {
 };
 
 export default async function BlogAdminPage({ searchParams }: Props) {
-  const { key } = await searchParams;
+  const { key, slug: slugParam } = await searchParams;
   const secret = process.env.BLOG_SECRET;
 
   if (!secret || key !== secret) {
     notFound();
   }
+
+  const existingPost = slugParam?.trim() ? getPostBySlug(slugParam.trim()) : null;
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
@@ -41,7 +44,9 @@ export default async function BlogAdminPage({ searchParams }: Props) {
             </span>
             <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Admin</span>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">New entry</h1>
+          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
+            {existingPost ? "Edit entry" : "New entry"}
+          </h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
             Write in Markdown. Save writes to <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">content/blog/</code> (locally or via GitHub when deployed).
           </p>
@@ -57,7 +62,20 @@ export default async function BlogAdminPage({ searchParams }: Props) {
           </div>
         </details>
 
-        <BlogEditor />
+        <BlogEditor
+          initialData={
+            existingPost
+              ? {
+                  slug: existingPost.slug,
+                  title: existingPost.title,
+                  date: existingPost.date,
+                  excerpt: existingPost.excerpt ?? "",
+                  image: existingPost.image ?? "",
+                  content: existingPost.content,
+                }
+              : undefined
+          }
+        />
       </div>
     </main>
   );

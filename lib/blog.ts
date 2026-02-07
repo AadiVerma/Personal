@@ -9,6 +9,7 @@ export type BlogPost = {
   title: string;
   date: string;
   excerpt?: string;
+  image?: string;
   content: string;
 };
 
@@ -29,6 +30,7 @@ export function getPosts(): BlogPost[] {
         title: (data.title as string) ?? slug,
         date: (data.date as string) ?? "",
         excerpt: (data.excerpt as string) ?? undefined,
+        image: (data.image as string) || undefined,
         content,
       };
     })
@@ -46,6 +48,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     title: (data.title as string) ?? slug,
     date: (data.date as string) ?? "",
     excerpt: (data.excerpt as string) ?? undefined,
+    image: (data.image as string) || undefined,
     content,
   };
 }

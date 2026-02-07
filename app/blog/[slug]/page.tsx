@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CalendarIcon, ArrowLeftIcon } from "lucide-react";
+import { CalendarIcon, ArrowLeftIcon, PencilIcon } from "lucide-react";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
 import { MarkdownContent } from "@/components/blog/markdown-content";
 import { RESUME_DATA } from "@/data/resume-data";
@@ -56,6 +56,19 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
           <div className="mb-6 h-1 w-12 rounded-full bg-primary/80 md:mb-8" aria-hidden />
 
           <header className="mb-10 md:mb-14">
+            {post.image && (
+              <div className="mb-8 max-h-[380px] min-w-0 overflow-hidden rounded-xl border border-border bg-muted/30 shadow-sm md:mb-10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={post.image}
+                  alt=""
+                  className="h-auto max-h-[380px] w-full max-w-full object-cover"
+                  width={680}
+                  height={380}
+                  aria-hidden
+                />
+              </div>
+            )}
             <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
               <time dateTime={post.date} className="flex items-center gap-2 font-medium">
                 <CalendarIcon className="size-4" />
@@ -92,8 +105,14 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
                 Back to Chronicles
               </Link>
             </Button>
-            {isAdmin && (
+            {isAdmin && key && (
               <div className="flex items-center gap-3">
+                <Button variant="outline" size="sm" className="gap-2" asChild>
+                  <Link href={`/blog/admin?key=${encodeURIComponent(key)}&slug=${encodeURIComponent(slug)}`}>
+                    <PencilIcon className="size-4" />
+                    Revise this tale
+                  </Link>
+                </Button>
                 <DeletePostButton slug={slug} />
               </div>
             )}
