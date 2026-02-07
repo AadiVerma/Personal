@@ -45,10 +45,10 @@ export default async function BlogAdminPage({ searchParams }: Props) {
             <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Admin</span>
           </div>
           <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
-            {existingPost ? "Edit entry" : "New entry"}
+            {existingPost ? "Revise this tale" : "Weave a new tale"}
           </h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
-            Write in Markdown. Save writes to <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">content/blog/</code> (locally or via GitHub when deployed).
+            Pen your tale in Markdown. When you save, it’s written to the chronicle at <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">content/blog/</code>—locally, or via GitHub when deployed.
           </p>
         </header>
 
