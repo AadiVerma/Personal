@@ -248,13 +248,13 @@
 
 .blog-body p {
   margin-bottom: 1.25rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--foreground));
 }
 
 .blog-body ul, .blog-body ol {
   margin-bottom: 1.25rem;
   padding-left: 1.5rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--foreground));
 }
 .blog-body li { margin-bottom: 0.35rem; }
 .blog-body ul { list-style-type: disc; }
@@ -274,13 +274,16 @@
 
 .blog-body blockquote {
   margin: 1.5rem 0;
-  padding: 1rem 1.25rem;
-  padding-left: 1.25rem;
+  padding: 0.875rem 1rem 0.875rem 1.125rem;
   border-left: 4px solid hsl(var(--primary) / 0.5);
   background: hsl(var(--muted) / 0.5);
   border-radius: 0 0.5rem 0.5rem 0;
   font-style: italic;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--foreground));
+  line-height: 1.65;
+}
+.blog-body blockquote p:last-child {
+  margin-bottom: 0;
 }
 
 .blog-body code {
