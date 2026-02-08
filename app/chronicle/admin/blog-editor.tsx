@@ -6,9 +6,10 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon, CopyIcon, DownloadIcon, ExternalLinkIcon, EyeIcon, FileTextIcon, ImagePlusIcon, PenLineIcon, SaveIcon } from "lucide-react";
+import { CalendarIcon, Clock, CopyIcon, DownloadIcon, ExternalLinkIcon, EyeIcon, FileTextIcon, ImagePlusIcon, PenLineIcon, SaveIcon } from "lucide-react";
 import matter from "gray-matter";
 import { MarkdownContent } from "@/components/blog/markdown-content";
+import { getReadTimeMinutes, formatReadTime } from "@/lib/read-time";
 import { RESUME_DATA } from "@/data/resume-data";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
@@ -147,7 +148,7 @@ export function BlogEditor({ initialData }: { initialData?: InitialData }) {
     setSaving(true);
     setSaveMessage(null);
     try {
-      const res = await fetch("/api/blog/save", {
+      const res = await fetch("/api/chronicle/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ key, filename: suggestedFilename, content: fullMarkdown }),
@@ -179,7 +180,7 @@ export function BlogEditor({ initialData }: { initialData?: InitialData }) {
         const form = new FormData();
         form.set("key", key);
         form.set("file", file);
-        const res = await fetch("/api/blog/upload-image", { method: "POST", body: form });
+        const res = await fetch("/api/chronicle/upload-image", { method: "POST", body: form });
         const text = await res.text();
         let data: { error?: string; path?: string } = {};
         try {
@@ -223,7 +224,7 @@ export function BlogEditor({ initialData }: { initialData?: InitialData }) {
         const form = new FormData();
         form.set("key", key);
         form.set("file", file);
-        const res = await fetch("/api/blog/upload-image", { method: "POST", body: form });
+        const res = await fetch("/api/chronicle/upload-image", { method: "POST", body: form });
         const text = await res.text();
         let data: { error?: string; path?: string } = {};
         try {
@@ -432,6 +433,10 @@ export function BlogEditor({ initialData }: { initialData?: InitialData }) {
                   <CalendarIcon className="size-4" />
                   {formatPreviewDate(preview.date) || "No date"}
                 </time>
+                <span className="flex items-center gap-2 font-medium">
+                  <Clock className="size-4" />
+                  {formatReadTime(getReadTimeMinutes(preview.body || ""))}
+                </span>
                 <span className="text-muted-foreground/60" aria-hidden>·</span>
                 <span className="rounded-md bg-primary/10 px-2 py-0.5 font-medium text-foreground">
                   {RESUME_DATA.name}
@@ -491,7 +496,7 @@ export function BlogEditor({ initialData }: { initialData?: InitialData }) {
               className="shrink-0 gap-2 text-muted-foreground hover:bg-muted hover:text-foreground"
               asChild
             >
-              <Link href="/blog">
+              <Link href="/chronicle">
                 <ExternalLinkIcon className="size-4" />
                 Open the chronicle
               </Link>

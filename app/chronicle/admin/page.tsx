@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { BlogEditor } from "@/app/blog/admin/blog-editor";
+import { BlogEditor } from "./blog-editor";
 import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon, InfoIcon, BookMarkedIcon } from "lucide-react";
 import { getPostBySlug } from "@/lib/blog";
@@ -8,11 +8,11 @@ import { getPostBySlug } from "@/lib/blog";
 type Props = { searchParams: Promise<{ key?: string; slug?: string }> };
 
 export const metadata = {
-  title: "Chronicles · Admin",
+  title: "Chronicle · Admin",
   robots: "noindex, nofollow",
 };
 
-export default async function BlogAdminPage({ searchParams }: Props) {
+export default async function ChronicleAdminPage({ searchParams }: Props) {
   const { key, slug: slugParam } = await searchParams;
   const secret = process.env.BLOG_SECRET;
 
@@ -31,9 +31,9 @@ export default async function BlogAdminPage({ searchParams }: Props) {
           className="-ml-2 mb-8 rounded-md border border-transparent px-3 text-muted-foreground transition-colors hover:border-border hover:bg-muted hover:text-foreground hover:shadow-sm"
           asChild
         >
-          <Link href="/blog" className="inline-flex items-center gap-2">
+          <Link href="/chronicle" className="inline-flex items-center gap-2">
             <ArrowLeftIcon className="size-4 shrink-0" />
-            Back to Chronicles
+            Back to Chronicle
           </Link>
         </Button>
 
@@ -48,7 +48,7 @@ export default async function BlogAdminPage({ searchParams }: Props) {
             {existingPost ? "Revise this tale" : "Weave a new tale"}
           </h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
-            Pen your tale in Markdown. When you save, it’s written to the chronicle at <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">content/blog/</code>—locally, or via GitHub when deployed.
+            Pen your tale in Markdown. When you save, it's written to the chronicle at <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">content/blog/</code>—locally, or via GitHub when deployed.
           </p>
         </header>
 

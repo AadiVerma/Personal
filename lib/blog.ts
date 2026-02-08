@@ -1,8 +1,11 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { getReadTimeMinutes } from "./read-time";
 
 const POSTS_DIR = path.join(process.cwd(), "content", "blog");
+
+export { formatReadTime } from "./read-time";
 
 export type BlogPost = {
   slug: string;
@@ -11,6 +14,8 @@ export type BlogPost = {
   excerpt?: string;
   image?: string;
   content: string;
+  /** Estimated read time in minutes (word count / WPM); may be < 1 for short posts. */
+  readTimeMinutes: number;
 };
 
 export function getPostSlugs(): string[] {
@@ -32,6 +37,7 @@ export function getPosts(): BlogPost[] {
         excerpt: (data.excerpt as string) ?? undefined,
         image: (data.image as string) || undefined,
         content,
+        readTimeMinutes: getReadTimeMinutes(content),
       };
     })
     .filter((p) => p.slug);
@@ -50,5 +56,6 @@ export function getPostBySlug(slug: string): BlogPost | null {
     excerpt: (data.excerpt as string) ?? undefined,
     image: (data.image as string) || undefined,
     content,
+    readTimeMinutes: getReadTimeMinutes(content),
   };
 }

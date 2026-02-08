@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CalendarIcon, ArrowLeftIcon, PencilIcon } from "lucide-react";
-import { getPostBySlug, getPostSlugs } from "@/lib/blog";
+import { CalendarIcon, ArrowLeftIcon, PencilIcon, Clock } from "lucide-react";
+import { getPostBySlug, getPostSlugs, formatReadTime } from "@/lib/blog";
 import { MarkdownContent } from "@/components/blog/markdown-content";
 import { RESUME_DATA } from "@/data/resume-data";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,7 @@ function formatDate(dateStr: string) {
   });
 }
 
-export default async function BlogPostPage({ params, searchParams }: Props) {
+export default async function ChroniclePostPage({ params, searchParams }: Props) {
   const { slug } = await params;
   const { key } = await searchParams;
   const post = getPostBySlug(slug);
@@ -44,9 +44,9 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
             className="-ml-2 rounded-md border border-transparent px-3 text-muted-foreground transition-colors hover:border-border hover:bg-muted hover:text-foreground hover:shadow-sm"
             asChild
           >
-            <Link href="/blog" className="inline-flex items-center gap-2">
+            <Link href="/chronicle" className="inline-flex items-center gap-2">
               <ArrowLeftIcon className="size-4 shrink-0" />
-              Back to Chronicles
+              Back to Chronicle
             </Link>
           </Button>
         </div>
@@ -74,6 +74,10 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
                 <CalendarIcon className="size-4" />
                 {formattedDate}
               </time>
+              <span className="flex items-center gap-2 font-medium">
+                <Clock className="size-4" />
+                {formatReadTime(post.readTimeMinutes)}
+              </span>
               <span className="text-muted-foreground/60" aria-hidden>
                 ·
               </span>
@@ -100,15 +104,15 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
         <footer className="mt-14 border-t border-border pt-10">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <Button variant="outline" size="sm" className="gap-2" asChild>
-              <Link href="/blog">
+              <Link href="/chronicle">
                 <ArrowLeftIcon className="size-4" />
-                Back to Chronicles
+                Back to Chronicle
               </Link>
             </Button>
             {isAdmin && key && (
               <div className="flex items-center gap-3">
                 <Button variant="outline" size="sm" className="gap-2" asChild>
-                  <Link href={`/blog/admin?key=${encodeURIComponent(key)}&slug=${encodeURIComponent(slug)}`}>
+                  <Link href={`/chronicle/admin?key=${encodeURIComponent(key)}&slug=${encodeURIComponent(slug)}`}>
                     <PencilIcon className="size-4" />
                     Revise this tale
                   </Link>

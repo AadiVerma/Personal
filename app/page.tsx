@@ -307,7 +307,7 @@ const page = () => {
 
       <CommandMenu
           links={[
-            { url: "/blog", title: "Chronicles" },
+            { url: "/chronicle", title: "Chronicle" },
             ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
               url: socialMediaLink.url,
               title: socialMediaLink.name,

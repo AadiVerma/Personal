@@ -28,7 +28,7 @@ export function DeletePostButton({ slug }: { slug: string }) {
   const handleConfirmDelete = async () => {
     setDeleting(true);
     try {
-      const res = await fetch("/api/blog/delete", {
+      const res = await fetch("/api/chronicle/delete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ key, slug }),
@@ -40,7 +40,7 @@ export function DeletePostButton({ slug }: { slug: string }) {
       }
       setOpen(false);
       toast.success("Post deleted");
-      router.push("/blog");
+      router.push("/chronicle");
       router.refresh();
     } catch {
       toast.error("Network error");
