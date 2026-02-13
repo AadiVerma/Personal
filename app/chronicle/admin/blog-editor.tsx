@@ -48,7 +48,7 @@ const DEFAULT_TITLE = "A leaf yet unturned";
 const DEFAULT_EXCERPT = "A few lines from the road—enough to beckon the reader.";
 const DEFAULT_IMAGE = "https://imgs.search.brave.com/RYc2IhlckWspRSSBk5LLKxAIgHYz2plLGN9fWdlVsy8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2QyL2Rh/LzkyL2QyZGE5MmIy/ZGY4YjUwNmVlMmQx/YzRmNWMyY2VhM2My/LmpwZw";
 const DEFAULT_BODY = `The road is strewn with leaves, each one a moment passed.
-Set down what you have gathered—and what still lies ahead.`;
+Set down what you have gathered—and what still \`lies\` <mark>ahead</mark>.`;
 
 const inputClassName =
   "w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground/70 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary";

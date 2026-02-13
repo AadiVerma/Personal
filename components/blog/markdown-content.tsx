@@ -2,6 +2,7 @@
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 const imageClassName =
   "rounded-lg border border-border w-full h-auto my-6 block";
@@ -10,6 +11,7 @@ export function MarkdownContent({ content }: { content: string }) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
+      rehypePlugins={[rehypeRaw]}
       components={{
         a: ({ href, children }) => (
           <a href={href} target="_blank" rel="noopener noreferrer">
