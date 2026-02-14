@@ -10,7 +10,7 @@ export const RESUME_DATA = {
   initials: "AV",
   location: "India, IND",
   locationLink: "https://www.google.com/maps/place/India",
-  about: "Hey, I’m Aditya — a 20-year-old tech enthusiast and self-taught developer from India, with a strong interest in system-level problem solving, competitive programming, and building practical software solutions. I spend a lot of time sharpening my skills on platforms like LeetCode, diving into DSA, I’m fascinated by how systems work under the hood.I’m currently focused on growing as a full-stack developer, Always keeping performance and user experience in mind. I believe in learning by doing and I’m always curious about what I can build next",
+  about: "Hey, I’m Aditya — a 21-year-old tech enthusiast and self-taught developer from India, with a strong interest in system-level problem solving, competitive programming, and building practical software solutions. I spend a lot of time sharpening my skills on platforms like LeetCode, diving into DSA, I’m fascinated by how systems work under the hood.I’m currently focused on growing as a full-stack developer, Always keeping performance and user experience in mind. I believe in learning by doing and I’m always curious about what I can build next",
   aboutBulletPoints: [
     "Challenging myself to build a product",
     "Always learning new things",
@@ -39,7 +39,7 @@ export const RESUME_DATA = {
       },
       {
         name: "Instagram",
-        url: "https://www.instagram.com/aditya946verma/",
+        url: "https://www.instagram.com/vermaadi07/",
         icon: InstagramIcon,
       },
       {

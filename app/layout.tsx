@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider"
+import { ForceLightOutsideChronicle } from "@/components/force-light-outside-chronicle"
 import { HotToaster } from "@/components/toaster"
 import "./globals.css";
 import { RESUME_DATA } from "@/data/resume-data";
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/rexanwong.ico" type="image/x-icon" />
       </head>
@@ -27,6 +28,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <ForceLightOutsideChronicle />
             {children}
             <HotToaster />
           </ThemeProvider>

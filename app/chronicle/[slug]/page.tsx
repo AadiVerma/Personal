@@ -5,6 +5,7 @@ import { getPostBySlug, getPostSlugs, formatReadTime } from "@/lib/blog";
 import { MarkdownContent } from "@/components/blog/markdown-content";
 import { RESUME_DATA } from "@/data/resume-data";
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/mode-toggle";
 import { DeletePostButton } from "./delete-post-button";
 
 type Props = { params: Promise<{ slug: string }>; searchParams: Promise<{ key?: string }> };
@@ -36,8 +37,8 @@ export default async function ChroniclePostPage({ params, searchParams }: Props)
   return (
     <main className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
       <div className="container relative mx-auto max-w-[680px] scroll-my-12 px-4 pb-20 pt-8 md:px-6 md:pt-12">
-        {/* Back link */}
-        <div className="mb-8 md:mb-10">
+        {/* Back link + theme toggle */}
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-3 md:mb-10">
           <Button
             variant="ghost"
             size="sm"
@@ -49,6 +50,7 @@ export default async function ChroniclePostPage({ params, searchParams }: Props)
               Back to Chronicle
             </Link>
           </Button>
+          <ModeToggle />
         </div>
 
         <article className="blog-article">
