@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CalendarIcon, ArrowLeftIcon, PencilIcon, Clock } from "lucide-react";
-import { getPostBySlug, getPostSlugs, formatReadTime } from "@/lib/blog";
+import { getPostBySlug, getPostSlugs, getRelatedPosts, formatReadTime } from "@/lib/blog";
 import { MarkdownContent } from "@/components/blog/markdown-content";
 import { RESUME_DATA } from "@/data/resume-data";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { DeletePostButton } from "./delete-post-button";
+import { SuggestedPosts } from "./suggested-posts";
 
 type Props = { params: Promise<{ slug: string }>; searchParams: Promise<{ key?: string }> };
 
@@ -101,6 +102,8 @@ export default async function ChroniclePostPage({ params, searchParams }: Props)
             <MarkdownContent content={post.content} />
           </div>
         </article>
+
+        <SuggestedPosts posts={getRelatedPosts(slug, 3)} />
 
         {/* Footer CTA */}
         <footer className="mt-14 border-t border-border pt-10">

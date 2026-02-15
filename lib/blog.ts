@@ -59,3 +59,69 @@ export function getPostBySlug(slug: string): BlogPost | null {
     readTimeMinutes: getReadTimeMinutes(content),
   };
 }
+
+/** Lightweight type for related-post suggestions (no full content). */
+export type BlogPostSuggestion = Pick<BlogPost, "slug" | "title" | "excerpt" | "date" | "readTimeMinutes" | "image">;
+
+/** Strip markdown to plain text for topic fingerprint (headers, bold, links, etc.). */
+function stripMarkdownForFingerprint(text: string): string {
+  return text
+    .replace(/#{1,6}\s+/g, " ")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/`[^`]+`/g, " ")
+    .replace(/[^\w\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+/** Tokenize into words (lowercase, non-empty). */
+function tokenize(text: string): string[] {
+  return text.split(/\s+/).filter((w) => w.length > 1);
+}
+
+/** Build a single "topic" string from a post for similarity. */
+function getTopicText(post: BlogPost): string {
+  const contentSnippet = stripMarkdownForFingerprint(post.content.slice(0, 1200));
+  const title = (post.title ?? "").toLowerCase();
+  const excerpt = (post.excerpt ?? "").toLowerCase();
+  return `${title} ${excerpt} ${contentSnippet}`;
+}
+
+/**
+ * Returns suggested/related posts based on similar topics (title, excerpt, content).
+ * Newly published posts are included automatically since they live in the same content pool.
+ */
+export function getRelatedPosts(currentSlug: string, limit = 3): BlogPostSuggestion[] {
+  const posts = getPosts();
+  const current = posts.find((p) => p.slug === currentSlug);
+  if (!current) return [];
+
+  const currentTokens = new Set(tokenize(getTopicText(current)));
+  const others = posts.filter((p) => p.slug !== currentSlug);
+  if (others.length === 0) return [];
+
+  const scored = others.map((post) => {
+    const tokens = tokenize(getTopicText(post));
+    let overlap = 0;
+    for (const t of tokens) {
+      if (currentTokens.has(t)) overlap++;
+    }
+    const jaccard = currentTokens.size > 0 ? overlap / (currentTokens.size + tokens.length - overlap) : 0;
+    return { post, score: jaccard };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  const top = scored.slice(0, limit);
+
+  return top.map(({ post }) => ({
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    date: post.date,
+    readTimeMinutes: post.readTimeMinutes,
+    image: post.image,
+  }));
+}
