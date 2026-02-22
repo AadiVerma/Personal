@@ -5,6 +5,7 @@ excerpt: "Most developers focus on making code work. Senior engineers focus on m
 image: "https://res.cloudinary.com/dq93uuksm/image/upload/v1771678966/SOLID_pj4iid.png"
 ---
 
+
 If you’ve ever inherited a codebase that felt like a tangled mess, or watched your own project become an unmanageable behemoth, you know the pain. This isn't inevitable. It’s often a symptom of neglecting core design principles.
 
 This guide will break down 11 crucial software design principles—from the universally applicable KISS and DRY to the powerful SOLID suite. We’ll explain what they are, why they matter, and how to apply them.
@@ -112,3 +113,102 @@ These principles are foundational. They apply regardless of your programming lan
 - Introduce wrapper methods if an object needs to expose functionality of its components.
  
 ## Part 2: Object-Oriented Design Principles (SOLID)
+
+The SOLID principles are a set of five design principles intended to make software designs more understandable, flexible, and maintainable. While specifically for object-oriented programming, their underlying concepts are broadly applicable.
+
+## 6. SRP: Single Responsibility Principle
+
+**What it is:** The SRP states that "a class should have only one reason to change." This means a class (or module or function) should encapsulate a single, well-defined responsibility.
+
+**Why it matters:**
+- **Reduced Coupling:** Components are less interdependent.
+- **Increased Cohesion:** Related functionality is kept together.
+- **Easier Maintenance:** Changes to one responsibility don't affect others within the same class.
+- **Improved Testability:** A class with a single responsibility is easier to test in isolation.
+
+**How to apply it:**
+
+- Identify all the "reasons to change" for a class. If there's more than one, it violates SRP.
+- Extract unrelated responsibilities into separate classes.
+- Think about the "actors" or "users" of the class. If different actors require changes to the same class for different reasons, it's a violation.
+
+## 7. OCP: Open/Closed Principle
+**What it is:** The OCP states that "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification." This means you should be able to add new functionality without altering existing, working code.
+
+**Why it matters:**
+
+- **Stability:** Existing, tested code remains untouched, reducing the risk of introducing new bugs.
+- **Flexibility:** Easily add new features or behaviors without complex refactoring.
+- **Maintainability:** Easier to manage growth in functionality.
+
+**How to apply it:**
+
+- Use abstractions (interfaces or abstract classes) to define common behaviors.
+- Allow new concrete implementations of these abstractions to be added without changing the abstraction or its clients.
+- Leverage polymorphism, inheritance, and dependency injection.
+
+## 8. LSP: Liskov Substitution Principle
+
+Subclasses must work wherever the base class works. If you have a method that accepts a Bird, passing in a Penguin shouldn't break things even though penguins can't fly. This means your subclasses can't violate the expectations set by the parent class.
+
+Said differently, if your code uses a parent class or interface, it should be able to use any subclass without knowing which specific subclass it is. The subclass can add new behavior, but it can't remove or break behavior that the parent promised. When a subclass throws an exception for a method the parent class provides, that's a red flag you're violating LSP. If a subclass forces callers to add special-case logic (e.g., if (bird instanceof Penguin)), you violated LSP.
+
+**Why it matters:**
+
+- **Correctness of Polymorphism:** Ensures that inheritance hierarchies are used correctly and don't lead to unexpected behavior.
+- **Robustness:** Prevents subtle bugs that arise when derived classes don't behave as expected by their base types.
+- **Maintainability:** Allows you to change implementations without affecting client code that depends on the base type.
+
+## 9. ISP: Interface Segregation Principle
+
+**What it is:** The ISP states that "clients should not be forced to depend on interfaces they do not use." Instead of one large, "fat" interface, prefer many small, role-specific interfaces.
+
+The problem with fat interfaces is that classes are forced to implement methods they'll never use. This leads to empty implementations or methods that throw exceptions, which is a code smell. 
+
+**Why it matters:**
+
+- **Reduced Coupling:** Clients only depend on the methods they actually need, reducing their coupling to unrelated parts of an interface.
+- **Easier Maintenance:** Changes to methods on an unused part of a large interface won't force clients to recompile or adapt.
+- **Improved Design:** Promotes more granular and focused interfaces, leading to better overall design.
+
+## 10. DIP: Dependency Inversion Principle
+
+**What it is:** The DIP states that "high-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions."
+
+> In simpler terms: Depend on interfaces (abstractions), not concrete implementations.
+
+**Why it matters:**
+
+- **Decoupling:** High-level policy (the "what") is separated from low-level implementation (the "how").
+- **Flexibility:** You can swap out a database, a third-party API, or a hardware driver without changing a single line of your core business logic.
+- **Testability:** You can easily inject "mock" or "stub" objects during unit testing instead of relying on slow or external production systems.
+
+**How to apply it:**
+
+- Identify low-level "detail" classes (e.g., SqlDatabase, FileSystem, SmtpEmailSender).
+- Create an interface or abstract base class that defines the operations these details perform (e.g., IDataStore, IStorage, IMessageSender).
+- Inject the concrete implementation into the high-level class via a constructor or method (this is called Dependency Injection).
+
+## 11. Composition Over Inheritance
+
+**What it is:** Instead of building deep, complex family trees of classes (Inheritance), you build objects by "composing" them of smaller parts.
+
+**Why:** It’s more flexible. Inheritance is a "is-a" relationship (A Bird is an Animal). Composition is a "has-a" relationship (A Bird has Wings). It is much easier to change what an object has than what it is.
+
+**Here is a quick cheat sheet for the principles you should know.**
+
+**General Principles**
+
+- KISS → Start simple, add complexity only when needed
+- DRY → Reduce duplication, simplify maintenance
+- YAGNI → Build for today, not hypothetical futures
+- Separation of Concerns → Enable independent testing and changes
+- Law of Demeter → Reduce coupling, hide internal structure
+
+**SOLID Principles**
+
+- SRP → Keep classes focused on one responsibility
+- OCP → Support future requirements without modifying existing code
+- LSP → Prevent brittle hierarchies that break at runtime
+- ISP → Keep interfaces clean and focused
+- DIP → Decouple business logic from implementation details
