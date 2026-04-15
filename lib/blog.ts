@@ -16,6 +16,8 @@ export type BlogPost = {
   content: string;
   /** Estimated read time in minutes (word count / WPM); may be < 1 for short posts. */
   readTimeMinutes: number;
+  /** Whether this post is private (only visible to admins). */
+  isPrivate?: boolean;
 };
 
 export function getPostSlugs(): string[] {
@@ -23,7 +25,8 @@ export function getPostSlugs(): string[] {
   return fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".md"));
 }
 
-export function getPosts(): BlogPost[] {
+export function getPosts(options?: { includePrivate?: boolean }): BlogPost[] {
+  const includePrivate = options?.includePrivate ?? false;
   const slugs = getPostSlugs();
   const posts = slugs
     .map((slug) => {
@@ -38,9 +41,10 @@ export function getPosts(): BlogPost[] {
         image: (data.image as string) || undefined,
         content,
         readTimeMinutes: getReadTimeMinutes(content),
+        isPrivate: !!data.private,
       };
     })
-    .filter((p) => p.slug);
+    .filter((p) => p.slug && (includePrivate || !p.isPrivate));
   return posts.sort((a, b) => (b.date > a.date ? 1 : -1));
 }
 
@@ -57,11 +61,12 @@ export function getPostBySlug(slug: string): BlogPost | null {
     image: (data.image as string) || undefined,
     content,
     readTimeMinutes: getReadTimeMinutes(content),
+    isPrivate: !!data.private,
   };
 }
 
 /** Lightweight type for related-post suggestions (no full content). */
-export type BlogPostSuggestion = Pick<BlogPost, "slug" | "title" | "excerpt" | "date" | "readTimeMinutes" | "image">;
+export type BlogPostSuggestion = Pick<BlogPost, "slug" | "title" | "excerpt" | "date" | "readTimeMinutes" | "image" | "isPrivate">;
 
 /** Strip markdown to plain text for topic fingerprint (headers, bold, links, etc.). */
 function stripMarkdownForFingerprint(text: string): string {
@@ -94,8 +99,8 @@ function getTopicText(post: BlogPost): string {
  * Returns suggested/related posts based on similar topics (title, excerpt, content).
  * Newly published posts are included automatically since they live in the same content pool.
  */
-export function getRelatedPosts(currentSlug: string, limit = 3): BlogPostSuggestion[] {
-  const posts = getPosts();
+export function getRelatedPosts(currentSlug: string, limit = 3, includePrivate = false): BlogPostSuggestion[] {
+  const posts = getPosts({ includePrivate });
   const current = posts.find((p) => p.slug === currentSlug);
   if (!current) return [];
 
@@ -123,5 +128,6 @@ export function getRelatedPosts(currentSlug: string, limit = 3): BlogPostSuggest
     date: post.date,
     readTimeMinutes: post.readTimeMinutes,
     image: post.image,
+    isPrivate: post.isPrivate,
   }));
 }

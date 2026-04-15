@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { BookOpen, CalendarIcon, Clock, ScrollText, Search, X } from "lucide-react";
+import { BookOpen, CalendarIcon, Clock, Lock, ScrollText, Search, X } from "lucide-react";
 import { formatReadTime } from "@/lib/read-time";
 
 /** Shape of a post as passed from the server (matches BlogPost without content). */
@@ -12,6 +12,7 @@ type PostItem = {
   date: string;
   excerpt?: string;
   readTimeMinutes: number;
+  isPrivate?: boolean;
 };
 
 function formatDate(dateStr: string) {
@@ -32,7 +33,7 @@ function matchesSearch(post: PostItem, query: string): boolean {
   return titleMatch || excerptMatch;
 }
 
-export function ChronicleList({ posts }: { posts: PostItem[] }) {
+export function ChronicleList({ posts, isAdmin = false }: { posts: PostItem[]; isAdmin?: boolean }) {
   const [search, setSearch] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -160,9 +161,14 @@ export function ChronicleList({ posts }: { posts: PostItem[] }) {
                 >
                   <span className="absolute inset-y-0 left-0 w-1 bg-primary/50 transition-colors group-hover:bg-primary" aria-hidden />
                   <div className="min-w-0 flex-1">
-                    <h2 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                      {post.title}
-                    </h2>
+                    <div className="flex items-center gap-2">
+                      <h2 className="font-semibold text-foreground transition-colors group-hover:text-primary">
+                        {post.title}
+                      </h2>
+                      {isAdmin && post.isPrivate && (
+                        <Lock className="size-3.5 shrink-0 text-amber-600 dark:text-amber-500" aria-label="Private post" />
+                      )}
+                    </div>
                     {post.excerpt && (
                       <p className="mt-0.5 line-clamp-1 text-sm text-muted-foreground">
                         {post.excerpt}

@@ -1,7 +1,7 @@
 import { GitHubIcon, LinkedInIcon, XIcon, InstagramIcon, LeetCodeIcon } from "@/components/icons";
 import {
   CityUniversityLogo, EthGlobalLogo, LB,
-  Procol, IEEELogo, ThirdwebLogo, Cosensys, DeveloperDao, Apple, Olympiad, Arta, Cryptoblk, HKIS, CISM, CAIS, VideoFast, TextBehindImage, Next, RT
+  Procol, ThirdwebLogo, Cosensys, DeveloperDao, Apple, Olympiad, Arta, Cryptoblk, HKIS, CISM, CAIS, VideoFast, TextBehindImage, Next, RT
 } from "@/public";
 import { BadgeSwissFranc } from "lucide-react";
 
@@ -149,13 +149,13 @@ export const RESUME_DATA = {
     {
       company: "Procol",
       link: "https://www.procol.io/",
-      badges: [" Ruby on Rails", "Backend Developer "],
+      badges: ["Ruby on Rails", "Python", "FastAPI", "MCP", "Backend Developer"],
       title: "Software Engineer Intern",
       logo: Procol,
       start: "2025",
       end: "Present",
       description:
-        "Working on backend development using Ruby on Rails. Focused on building reliable, efficient systems and learning by doing.",
+        "Building backend solutions with Ruby on Rails and Python. Developing scalable APIs using FastAPI and implementing Model Context Protocol (MCP). Focused on writing clean, maintainable, production-ready code.",
     }
   ],
 } as const;

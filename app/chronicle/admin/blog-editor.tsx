@@ -21,13 +21,15 @@ type InitialData = {
   excerpt: string;
   image: string;
   content: string;
+  isPrivate?: boolean;
 };
 
 const frontmatterLines = (
   title: string,
   excerpt: string,
   date: string,
-  image: string
+  image: string,
+  isPrivate: boolean = false
 ) => {
   const lines = [
     `title: "${title.replace(/"/g, '\\"')}"`,
@@ -40,6 +42,9 @@ const frontmatterLines = (
       .replace(/\\/g, "\\\\")
       .replace(/"/g, '\\"');
     lines.push(`image: "${escaped}"`);
+  }
+  if (isPrivate) {
+    lines.push(`private: true`);
   }
   return `---\n${lines.join("\n")}\n---\n\n`;
 };
@@ -94,6 +99,7 @@ export function BlogEditor({ initialData }: { initialData?: InitialData }) {
   const [excerpt, setExcerpt] = useState(initialData?.excerpt ?? DEFAULT_EXCERPT);
   const [date, setDate] = useState(initialData?.date ?? new Date().toISOString().slice(0, 10));
   const [image, setImage] = useState(initialData?.image ?? DEFAULT_IMAGE);
+  const [isPrivate, setIsPrivate] = useState(initialData?.isPrivate ?? false);
   const [copied, setCopied] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<{ type: "ok" | "err"; text: string } | null>(null);
@@ -116,7 +122,7 @@ export function BlogEditor({ initialData }: { initialData?: InitialData }) {
     : `${slugFromTitle || "post"}.md`;
 
   const fullMarkdown = title
-    ? frontmatterLines(title, excerpt, date, image) + value
+    ? frontmatterLines(title, excerpt, date, image, isPrivate) + value
     : value;
 
   const copyToClipboard = useCallback(() => {
@@ -299,6 +305,23 @@ export function BlogEditor({ initialData }: { initialData?: InitialData }) {
               onChange={(e) => setDate(e.target.value)}
               className={inputClassName}
             />
+          </div>
+          <div className="md:col-span-2">
+            <label htmlFor="visibility" className="mb-2 block text-sm font-medium text-muted-foreground">
+              Visibility
+            </label>
+            <div className="flex items-center gap-3 rounded-lg border border-input bg-background px-3.5 py-2.5">
+              <input
+                id="visibility"
+                type="checkbox"
+                checked={isPrivate}
+                onChange={(e) => setIsPrivate(e.target.checked)}
+                className="h-4 w-4 rounded border border-input"
+              />
+              <label htmlFor="visibility" className="cursor-pointer text-sm font-medium">
+                {isPrivate ? "🔒 Private (only visible to admins)" : "🌐 Public (visible to everyone)"}
+              </label>
+            </div>
           </div>
           <div className="md:col-span-2">
             <label htmlFor="image" className="mb-2 block text-sm font-medium text-muted-foreground">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CalendarIcon, ArrowLeftIcon, PencilIcon, Clock } from "lucide-react";
+import { CalendarIcon, ArrowLeftIcon, PencilIcon, Clock, Lock } from "lucide-react";
 import { getPostBySlug, getPostSlugs, getRelatedPosts, formatReadTime } from "@/lib/blog";
 import { MarkdownContent } from "@/components/blog/markdown-content";
 import { RESUME_DATA } from "@/data/resume-data";
@@ -32,8 +32,12 @@ export default async function ChroniclePostPage({ params, searchParams }: Props)
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
+  const isAdmin = !!(process.env.BLOG_SECRET && key === process.env.BLOG_SECRET);
+
+  // Block non-admin access to private posts
+  if (post.isPrivate && !isAdmin) notFound();
+
   const formattedDate = formatDate(post.date);
-  const isAdmin = process.env.BLOG_SECRET && key === process.env.BLOG_SECRET;
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
@@ -88,9 +92,17 @@ export default async function ChroniclePostPage({ params, searchParams }: Props)
                 {RESUME_DATA.name}
               </span>
             </div>
-            <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl md:leading-[1.15]">
-              {post.title}
-            </h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl md:leading-[1.15]">
+                {post.title}
+              </h1>
+              {post.isPrivate && isAdmin && (
+                <div className="flex items-center gap-1.5 rounded-md bg-amber-100 dark:bg-amber-900/30 px-2 py-1">
+                  <Lock className="size-4 text-amber-700 dark:text-amber-400" />
+                  <span className="text-xs font-medium text-amber-700 dark:text-amber-400">Private</span>
+                </div>
+              )}
+            </div>
             {post.excerpt && (
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
                 {post.excerpt}
@@ -103,7 +115,7 @@ export default async function ChroniclePostPage({ params, searchParams }: Props)
           </div>
         </article>
 
-        <SuggestedPosts posts={getRelatedPosts(slug, 3)} />
+        <SuggestedPosts posts={getRelatedPosts(slug, 3, isAdmin)} />
 
         {/* Footer CTA */}
         <footer className="mt-14 border-t border-border pt-10">

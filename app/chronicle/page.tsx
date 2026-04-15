@@ -10,8 +10,12 @@ export const metadata = {
   description: "Entries and notes from the road.",
 };
 
-export default function ChroniclePage() {
-  const posts = getPosts();
+type Props = { searchParams: Promise<{ key?: string }> };
+
+export default async function ChroniclePage({ searchParams }: Props) {
+  const { key } = await searchParams;
+  const isAdmin = !!(process.env.BLOG_SECRET && key === process.env.BLOG_SECRET);
+  const posts = getPosts({ includePrivate: isAdmin });
 
   return (
     <main className="blog-index-page min-h-screen">
@@ -44,7 +48,7 @@ export default function ChroniclePage() {
         </header>
 
         {/* Search + dense editorial list */}
-        <ChronicleList posts={posts} />
+        <ChronicleList posts={posts} isAdmin={isAdmin} />
       </div>
     </main>
   );

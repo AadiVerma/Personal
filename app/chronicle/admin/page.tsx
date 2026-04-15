@@ -72,6 +72,7 @@ export default async function ChronicleAdminPage({ searchParams }: Props) {
                   excerpt: existingPost.excerpt ?? "",
                   image: existingPost.image ?? "",
                   content: existingPost.content,
+                  isPrivate: existingPost.isPrivate,
                 }
               : undefined
           }
