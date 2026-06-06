@@ -76,21 +76,13 @@ const page = () => {
               ) : null}
             </div>
           </div>
-          <div className="relative group">
-                <Avatar className="size-28">
-                    <AvatarImage
-                        alt={RESUME_DATA.name}
-                        src={RESUME_DATA.avatarUrl1}
-                        className="transition-opacity duration-300 ease-in-out group-hover:opacity-0"
-                    />
-                    <AvatarImage
-                        alt={RESUME_DATA.name}
-                        src={RESUME_DATA.avatarUrl2}
-                        className="absolute inset-0 transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100"
-                    />
-                    <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
-                </Avatar>
-            </div>
+          <Avatar className="size-28">
+            <AvatarImage
+              alt={RESUME_DATA.name}
+              src={RESUME_DATA.avatarUrl1}
+            />
+            <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
+          </Avatar>
         </div>
         <Section>
           <p className='font-semibold'>
@@ -99,7 +91,7 @@ const page = () => {
 
           <div className='mt-2'>
             <p>
-            • Software Intern <a href="https://www.procol.io/" target='blank' className='text-purple-700 font-bold'>@Procol</a>
+            • Software Engineer <a href="https://www.procol.io/" target='blank' className='text-purple-700 font-bold'>@Procol</a>
             </p>
             {RESUME_DATA.aboutBulletPoints.map((item) => (
                 <p className='mb-1'>

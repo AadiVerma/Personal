@@ -14,7 +14,6 @@ export const RESUME_DATA = {
   aboutBulletPoints: [
     "Challenging myself to build a product",
     "Always learning new things",
-    "Looking for opportunities to grow and learn",
   ],
   avatarUrl1: "https://pbs.twimg.com/profile_images/1906680892556533760/NIswDg-F_400x400.jpg",
   avatarUrl2: "https://avatars.githubusercontent.com/u/122523624?v=4",
@@ -150,10 +149,21 @@ export const RESUME_DATA = {
       company: "Procol",
       link: "https://www.procol.io/",
       badges: ["Ruby on Rails", "Python", "FastAPI", "MCP", "Backend Developer"],
+      title: "Software Engineer",
+      logo: Procol,
+      start: "June 2026",
+      end: "Present",
+      description:
+        "Joined full-time as a Software Engineer after completing internship. Continuing to build and scale backend systems with Ruby on Rails and Python, developing production-grade APIs, and driving feature development across the platform.",
+    },
+    {
+      company: "Procol",
+      link: "https://www.procol.io/",
+      badges: ["Ruby on Rails", "Python", "FastAPI", "MCP", "Backend Developer"],
       title: "Software Engineer Intern",
       logo: Procol,
       start: "2025",
-      end: "Present",
+      end: "June 2026",
       description:
         "Building backend solutions with Ruby on Rails and Python. Developing scalable APIs using FastAPI and implementing Model Context Protocol (MCP). Focused on writing clean, maintainable, production-ready code.",
     }
