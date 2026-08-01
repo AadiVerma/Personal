@@ -69,7 +69,7 @@ export const RESUME_DATA = {
       date: "Since August 2026",
       description:
         "GridHook is an MCP connector platform — add your API and it automatically gets converted into MCP tools, letting AI agents call your endpoints directly.",
-      videoLink: "https://youtu.be/yaTP3GnzL34?si=o5-3GylMMRCoXDT2",
+      videoLink: "/output.mp4",
       projectDetailsLink: "https://github.com/AadiVerma/Gridhook-Backend",
     }
   ],
