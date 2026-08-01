@@ -5,7 +5,7 @@ import '@vidstack/react/player/styles/base.css';
 import '@vidstack/react/player/styles/plyr/theme.css';
 import { MediaPlayer, MediaProvider } from '@vidstack/react';
 import { PlyrLayout, plyrLayoutIcons } from '@vidstack/react/player/layouts/plyr';
-import { GlobeIcon, MailIcon } from "lucide-react";
+import { GlobeIcon, MailIcon, DownloadIcon } from "lucide-react";
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Section } from '@/components/ui/section';
@@ -42,6 +42,18 @@ const page = () => {
               </a>
             </p>
             <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
+              {RESUME_DATA.resumeUrl ? (
+                <Button
+                  className="size-8"
+                  variant="outline"
+                  size="icon"
+                  asChild
+                >
+                  <a href={RESUME_DATA.resumeUrl} download target="_blank" rel="noopener noreferrer">
+                    <DownloadIcon className="size-4" />
+                  </a>
+                </Button>
+              ) : null}
               {RESUME_DATA.contact.email ? (
                 <Button
                   className="size-8"
@@ -223,7 +235,7 @@ const page = () => {
                 <CardHeader>
                   <div className="flex items-center gap-x-3">
                       {education.logo && (
-                        <Image src={education.logo} alt={`${education.school} logo`} className="w-12 h-12 rounded-lg object-contain" />
+                        <Image src={education.logo} alt={`${education.school} logo`} width={48} height={48} className="w-12 h-12 rounded-lg object-contain" />
                       )}
                       <div className='flex-grow'>
                         <div className="flex items-center justify-between gap-x-2 text-base">

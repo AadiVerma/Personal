@@ -1,8 +1,5 @@
 import { GitHubIcon, LinkedInIcon, XIcon, InstagramIcon, LeetCodeIcon } from "@/components/icons";
-import {
-  CityUniversityLogo, EthGlobalLogo, LB,
-  Procol, ThirdwebLogo, Cosensys, DeveloperDao, Apple, Olympiad, Arta, Cryptoblk, HKIS, CISM, CAIS, VideoFast, TextBehindImage, Next, RT
-} from "@/public";
+import { Procol, CISM } from "@/public";
 import { BadgeSwissFranc } from "lucide-react";
 
 export const RESUME_DATA = {
@@ -10,14 +7,15 @@ export const RESUME_DATA = {
   initials: "AV",
   location: "India, IND",
   locationLink: "https://www.google.com/maps/place/India",
-  about: "Hey, I’m Aditya — a 21-year-old tech enthusiast and self-taught developer from India, with a strong interest in system-level problem solving, competitive programming, and building practical software solutions. I spend a lot of time sharpening my skills on platforms like LeetCode, diving into DSA, I’m fascinated by how systems work under the hood.I’m currently focused on growing as a full-stack developer, Always keeping performance and user experience in mind. I believe in learning by doing and I’m always curious about what I can build next",
+  about: "Hey, I’m Aditya — a 21-year-old tech enthusiast and self-taught developer from India, passionate about building systems that scale. Currently working with FastAPI and Go to build MCP connectors and real-world software solutions. Focused on system design, reliability, and user experience. Strong foundation in DSA, but most interested in translating that into production-grade code that actually matters. Always thinking about: how systems work under the hood, what makes software reliable at scale, and building things people use.",
   aboutBulletPoints: [
     "Challenging myself to build a product",
     "Always learning new things",
   ],
-  avatarUrl1: "https://pbs.twimg.com/profile_images/1906680892556533760/NIswDg-F_400x400.jpg",
+  avatarUrl1: "/profile.png",
   avatarUrl2: "https://avatars.githubusercontent.com/u/122523624?v=4",
   personalWebsiteUrl: "https://aditya7.com",
+  resumeUrl: "/Aditya_Verma_Resume.pdf",
   contact: {
     email: null,
     social: [
@@ -64,15 +62,15 @@ export const RESUME_DATA = {
   ],
   currentlyBuilding: [
     {
-      name: "Zerobase",
-      link: "https://www.github.com/AadiVerma",
-      badges: ["CRM", "BaaS"],
-      title: "Zerobase CRM",
-      date: "Since January 2025",
+      name: "GridHook",
+      link: "https://github.com/AadiVerma/Gridhook-Backend",
+      badges: ["MCP", "Go", "API", "Connectors", "Backend"],
+      title: "GridHook",
+      date: "Since August 2026",
       description:
-        "Platform connecting users with local businesses, improving discoverability and supporting community commerce. Onboarded 50+ businesses, attracted 1000+ unique users, and achieved 10k monthly visitors.",
+        "GridHook is an MCP connector platform — add your API and it automatically gets converted into MCP tools, letting AI agents call your endpoints directly.",
       videoLink: "https://youtu.be/yaTP3GnzL34?si=o5-3GylMMRCoXDT2",
-      projectDetailsLink: "https://github.com/AadiVerma",
+      projectDetailsLink: "https://github.com/AadiVerma/Gridhook-Backend",
     }
   ],
   My_Projects: [
@@ -121,27 +119,34 @@ export const RESUME_DATA = {
       projectDetailsLink: "https://github.com/AadiVerma/PETNEST",
     },
     {
-      name: "Tic Tac Toe",
-      link: "https://github.com/AadiVerma",
-      badges:["Fun","Full Stack","Game","Web-Sockets"],
-      title: "Tic-Tac-Toe",
-      date:"July 2024",
+      name: "Zerobase",
+      link: "https://www.github.com/AadiVerma",
+      badges: ["CRM", "BaaS"],
+      title: "Zerobase CRM",
+      date: "Since January 2025",
       description:
-        "Tic Tac Toe is a classic 2-player game built for quick fun and strategy, where players take turns marking Xs and Os to win by aligning three in a row.",
-      imageLink: "https://res.cloudinary.com/dq93uuksm/image/upload/v1744981233/Screenshot_2025-04-18_183029_e4sj5o.png",
-      projectDetailsLink: "https://github.com/AadiVerma/RealTime-Tic-Tac-Toe",
-    }
-
+        "Platform connecting users with local businesses, improving discoverability and supporting community commerce. Onboarded 50+ businesses, attracted 1000+ unique users, and achieved 10k monthly visitors.",
+      imageLink: "https://res.cloudinary.com/dq93uuksm/image/upload/v1785574738/Screenshot_2026-08-01_at_2.27.57_PM_eeq5fl.png",
+      projectDetailsLink: "https://github.com/AadiVerma",
+    },
   ],
 
   education: [
     {
       school: "Chitkara University",
-      degree: "Bachelors",
+      degree: "Bachelors, CGPA: 9.3",
       start: "2022",
       end: "2026",
-      activities: "Bachelors in Computer Science and Engineering",
+      activities: "4 years studying Computer Science and Engineering, going deep on DSA, systems, and full-stack development while building real projects alongside coursework.",
       logo: CISM
+    },
+    {
+      school: "BBMB DAV Public School",
+      degree: "12th, 91%",
+      start: "2008",
+      end: "2022",
+      activities: "14 years of foundational education, from LKG through 12th grade, building the discipline and fundamentals that led into Computer Science.",
+      logo: "https://res.cloudinary.com/dq93uuksm/image/upload/v1785574899/LOGO_ifs5s2.png",
     },
   ],
   work: [
@@ -162,7 +167,7 @@ export const RESUME_DATA = {
       badges: ["Ruby on Rails", "Python", "FastAPI", "MCP", "Backend Developer"],
       title: "Software Engineer Intern",
       logo: Procol,
-      start: "2025",
+      start: "April 2025",
       end: "June 2026",
       description:
         "Building backend solutions with Ruby on Rails and Python. Developing scalable APIs using FastAPI and implementing Model Context Protocol (MCP). Focused on writing clean, maintainable, production-ready code.",
