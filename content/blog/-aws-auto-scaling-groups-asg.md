@@ -2,8 +2,9 @@
 title: "🔄 AWS Auto Scaling Groups (ASG)"
 date: "2026-02-09"
 excerpt: "An Auto Scaling Group (ASG) is a logical group of EC2 instances that automatically scales in or out to maintain the desired application capacity."
-image: "https://imgs.search.brave.com/430V8h43Dt5b0IPojtASCfNlOND2D3ofkPQOlDmZ-CI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bm9wcy5pby93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyNS8wNi8z/ZTM4NjAxMi03YTBk/LTQxNzAtYWZjMC1j/MWY4ODhiOTFkOWEu/cG5n"
+image: "https://docs.aws.amazon.com/images/autoscaling/ec2/userguide/images/sample-3-tier-architecture-with-azs-diagram.png"
 ---
+
 
 # Why Scaling Matters in the Cloud
 Modern applications rarely have constant traffic.
