@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { CalendarIcon, ArrowLeftIcon, PencilIcon, Clock, Lock } from "lucide-react";
 import { getPostBySlug, getPostSlugs, getRelatedPosts, formatReadTime } from "@/lib/blog";
 import { MarkdownContent } from "@/components/blog/markdown-content";
+import { HeadingNavigator } from "@/components/blog/heading-navigator";
+import { extractHeadings } from "@/lib/headings";
 import { RESUME_DATA } from "@/data/resume-data";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -38,9 +40,11 @@ export default async function ChroniclePostPage({ params, searchParams }: Props)
   if (post.isPrivate && !isAdmin) notFound();
 
   const formattedDate = formatDate(post.date);
+  const headings = extractHeadings(post.content);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
+      <HeadingNavigator headings={headings} />
       <div className="container relative mx-auto max-w-[680px] scroll-my-12 px-4 pb-20 pt-8 md:px-6 md:pt-12">
         {/* Back link + theme toggle */}
         <div className="mb-8 flex flex-wrap items-center justify-between gap-3 md:mb-10">
