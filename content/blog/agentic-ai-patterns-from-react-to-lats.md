@@ -5,6 +5,7 @@ excerpt: "A practical deep dive into the reasoning patterns behind modern AI age
 image: "https://res.cloudinary.com/dq93uuksm/image/upload/v1790956975/Agentic_AI_Patterns_Infographic_dhi6zv.png"
 ---
 
+
 ## Why reasoning patterns matter
 
 A large language model on its own is a brilliant one-shot answer machine. Ask it a question and it predicts the most likely reply in a single pass. That works for "summarize this email" but breaks down for "find the cheapest flight to Lisbon next month, check my calendar, and book it."
@@ -298,4 +299,194 @@ Weaknesses
 - Bad lessons stick: a wrong reflection can mislead every later attempt.
 - Needs retry-safe tasks: you cannot "try again" after sending an email or making a payment.
 
+## Pattern 5: Tree of Thoughts (ToT)
+
+One-line summary: instead of following one chain of reasoning, branch into several, score them, and explore the most promising ones.
+
+Every pattern so far follows a single path. If step 2 goes wrong, everything after it is built on sand. Tree of Thoughts treats problem solving as search. Think of how a chess player considers several moves, imagines how each plays out, and abandons the bad ones.
+
+How it works
+
+ToT is defined by four design choices:
+1. Thought decomposition: decide what one "thought" (one step) is. It could be one equation, one paragraph plan, or one crossword word.
+2. Thought generation: at each node, the model proposes several candidate next thoughts (for example, 3 to 5).
+3. State evaluation: the model judges each partial solution, either with a score ("rate 1 to 10") or a label ("sure / maybe / impossible"), or by voting across candidates.
+4. Search algorithm: use breadth-first search (keep the best b candidates at each level) or depth-first search (go deep on the best branch, backtrack when a branch is judged hopeless).
+
+A worked example: the Game of 24
+
+Task: use the numbers 4, 9, 10, 13 with + − × ÷ to make exactly 24.
+
+```
+Root: [4, 9, 10, 13]
+
+Level 1 candidates (generated):
+  a) 13 - 9 = 4   -> left [4, 4, 10]    evaluator: "likely"
+  b) 10 - 4 = 6   -> left [6, 9, 13]    evaluator: "maybe"
+  c) 4 + 9 = 13   -> left [10, 13, 13]  evaluator: "impossible"  (pruned)
+
+Expand (a): [4, 4, 10]
+  a1) 10 - 4 = 6  -> left [4, 6]         evaluator: "sure" (4 x 6 = 24)
+  a2) 4 + 4 = 8   -> left [8, 10]        evaluator: "impossible" (pruned)
+
+Solution: (10 - 4) x (13 - 9) = 6 x 4 = 24
+```
+
+A linear CoT would commit to its first idea, say option (c), and fail. ToT sees that (c) is a dead end and moves on.
+
+#### Pseudo-code (breadth-first)
+
+```python
+def tree_of_thoughts(problem, breadth=5, keep=3, depth=3):
+    frontier = [problem.initial_state]
+    for level in range(depth):
+        candidates = []
+        for state in frontier:
+            for thought in llm.propose(state, n=breadth):    # generate
+                candidates.append(state.extend(thought))
+        scored = [(llm.evaluate(c), c) for c in candidates]  # evaluate
+        frontier = [c for _, c in sorted(scored, reverse=True)[:keep]]  # prune
+    return best_complete_solution(frontier)
+```
+
+Why it works
+
+On the Game of 24, GPT-4 with Chain-of-Thought solved only 4% of problems. With Tree of Thoughts it solved 74%. It also produced more coherent creative writing and solved more mini crosswords. The gains come from the ability to look ahead and backtrack.
+
+Strengths
+
+- Escapes early mistakes: bad branches are pruned, good ones expanded.
+- Explores alternatives: great when there are many plausible first moves.
+- Flexible: you can tune breadth, depth, and search strategy to your budget
+
+Weaknesses
+
+- Very expensive: dozens to hundreds of LLM calls per problem.
+- Evaluator-dependent: the model's self-scoring can be noisy, pruning a correct branch.
+- Mostly internal reasoning: classic ToT explores thoughts, not real-world actions with tools, so it does not use external feedback.
+- Complex to implement and tune compared with a simple loop.
+
+## Pattern 6: LATS (Language Agent Tree Search)
+
+One-line summary: search a tree of real actions (like ToT), act and observe at each node (like ReAct), and learn from failed branches (like Reflexion), all guided by Monte Carlo Tree Search.
+
+LATS is where the story comes together. Each earlier pattern solved one problem:
+
+• ReAct grounds reasoning in real observations but follows one path.
+
+• Tree of Thoughts explores many paths but reasons only internally.
+
+• Reflexion learns from failure but retries whole attempts linearly.
+
+LATS unifies all three. It borrows Monte Carlo Tree Search (MCTS), the algorithm behind AlphaGo, and uses the LLM in three roles at once: as the agent that proposes actions, as the value function that scores states, and as the critic that writes reflections.
+
+#### A quick primer on MCTS
+MCTS builds a search tree gradually. It spends more effort on branches that look promising, while still occasionally trying less-explored branches in case they hide something better. This balance is called exploration vs. exploitation, and MCTS manages it with a formula called UCT (Upper Confidence bounds applied to Trees). In plain words, UCT prefers nodes that have a high average score or have rarely been visited.
+
+How it works: the six steps
+
+LATS repeats these steps until it finds a solution or runs out of budget:
+
+1. Selection: starting at the root, walk down the tree, at each level picking the child with the best UCT score, until you reach a leaf.
+2. Expansion: the LLM proposes n possible next actions from that leaf (for example, 5). Each one is actually executed in the environment, producing a real observation, and becomes a new child node.
+3. Evaluation: the LLM scores each new node: how promising is this state? This can be combined with a self-consistency score across samples.
+4. Simulation: from the best new node, keep acting (ReAct-style) until reaching a terminal state: success, failure, or a step limit.
+5. Backpropagation: the final reward is passed back up the path, updating the value and visit count of every ancestor node. Good branches become more attractive next time.
+6. Reflection: if the trajectory failed, the LLM writes a reflection explaining why. That lesson is stored and added to the context of future expansions, so the agent does not repeat the mistake on other branches
+
+A worked example
+
+Task: "On a shopping site, find a men's waterproof hiking jacket under $100 with at least 4 stars."
+
+```
+Root: homepage
+├─ A1: search["waterproof hiking jacket men"]      value 0.7
+│   ├─ A1a: click item #1 ($140)                   -> over budget, value 0.2
+│   ├─ A1b: filter price < $100                    value 0.8  <- selected
+│   │    └─ simulate: click item #3, 4.4 stars, $89, waterproof -> SUCCESS (reward 1.0)
+│   └─ A1c: click item #2 (not waterproof)         value 0.1
+└─ A2: browse category "Outdoor"                     value 0.4
+
+Reflection stored from an earlier failed branch (A1a):
+  "I clicked a product before applying the price filter and wasted steps.
+   Apply budget filters first."
+```
+The reflection from A1a improves how every other branch is expanded, and the backpropagated reward makes the A1b path the one the agent returns.
+
+#### Pseudo-code
+
+```python
+def lats(task, iterations=30, n_children=5):
+    root = Node(state=env.reset(task))
+    reflections = []
+    for _ in range(iterations):
+        node = select_by_uct(root)                                  # 1. selection
+        for action in llm.propose(node.state, reflections, n=n_children):
+            obs = env.step(node.state, action)                      # 2. expansion (real action)
+            child = node.add_child(action, obs)
+            child.value = llm.evaluate(child.state)                 # 3. evaluation
+        best = max(node.children, key=lambda c: c.value)
+        reward, trajectory = simulate(best, reflections)            # 4. simulation
+        backpropagate(best, reward)                                 # 5. backpropagation
+        if reward == 1.0:
+            return trajectory
+        reflections.append(llm.reflect(task, trajectory))           # 6. reflection
+    return best_trajectory(root)
+```
+
+Strengths
+
+• Best-in-class quality on complex, multi-step tasks in the original benchmarks.
+
+• Recovers from mistakes: backtracking plus reflection means one bad action does not doom the run.
+
+• Grounded: every node reflects a real observation, not just an imagined thought.
+
+Weaknesses
+
+• The most expensive pattern here: many branches, many real actions, many LLM calls.
+
+• Requires a resettable environment: to explore branches, the agent must be able to return to an earlier state. That is easy for code or a sandbox, but impossible for side effects like sending an email or placing an order.
+
+• Slow: unsuitable for real-time, interactive use.
+
+• Complex to build: tree management, value estimates, and reflection memory all need careful engineering.
+
+### Side by side: which pattern when?
+The six patterns sit on a spectrum from cheap and simple (ReWOO, ReAct) to expensive and powerful (ToT, LATS). Here is how they compare on the three questions from the start, plus cost.
+
+
+| Pattern | Year | When it plans | Paths explored | Learns from failure | LLM calls per task | Best for |
+|--------|--------|--------|--------|--------|--------|--------|
+| ReAct | 2022 | One step at a time | One |No |One per step |Open-ended, exploratory tasks; the default |
+| Plan-and-Execute | 2023 | Upfront, with replanning | One | Partly (replanner) | Plan + steps + replans | Long tasks with clear structure |
+| ReWOO | 2023 | Fully upfront | One |No |Two |Predictable, cost-sensitive workflows |
+| Reflexion | 2023 | Per attempt | One per attempt |Yes, across attempts |Attempts × steps |Tasks with reliable success checks |
+| Tree of Thoughts | 2023 | Per branch, with lookahead | Many (internal thoughts) |Via pruning |Dozens to hundreds |Hard puzzles and planning, no tools |
+| LATS | 2023 | Per branch, via MCTS | Many (real actions) |Yes, across branches |Hundreds |Hardest tasks in resettable environments |
+
+## A simple decision guide
+
+Ask these questions in order:
+1. Are the steps known in advance and is cost a priority? Use ReWOO.
+2. Is the task long but clearly decomposable, or does a human need to approve the plan? Use Plan-and-Execute.
+3. Is it open-ended, where the next step depends on what you find? Use ReAct.
+4. Can you automatically check whether an answer is correct, and is retrying safe? Wrap your agent in Reflexion.
+5. Is it a hard reasoning problem where early wrong turns are fatal, and no tools are needed? Use Tree of Thoughts.
+6. Is it hard, multi-step, in a sandbox you can reset, with quality worth a big budget? Use LATS.
+When in doubt, start with ReAct. It is the baseline every other pattern is measured against, and you will learn exactly where it fails before you pay for something heavier.
+
+## Putting patterns into production
+
+In real systems these patterns are building blocks, not rival religions. The best agents usually mix them.
+
+### Combining patterns
+
+• Plan-and-Execute + ReAct: a planner breaks the goal into steps, and each step is a small ReAct loop. This is the most common architecture for research and coding agents.
+
+• ReAct + Reflexion: run a ReAct agent; if tests or a checker fail, reflect and retry. A cheap, high-value upgrade for coding agents.
+
+• ReWOO for the known parts, ReAct for the rest: batch the predictable lookups, then hand off to an adaptive loop for the messy part.
+
+• Routing: a lightweight classifier sends easy requests to a cheap pattern and hard ones to an expensive pattern, keeping average cost low.
 
