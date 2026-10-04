@@ -1,0 +1,90 @@
+[
+  {
+    "id": "build-a-product-millions-use",
+    "title": "Build a product millions of people use every day",
+    "note": "Something I made with my own hands, solving a real problem, living on people's home screens.",
+    "emoji": "🚀",
+    "category": "career",
+    "targetYear": "2030",
+    "manifested": false,
+    "createdAt": "2026-10-04"
+  },
+  {
+    "id": "become-a-full-time-software-engineer",
+    "title": "Become a full-time Software Engineer",
+    "note": "From intern to engineer. The first door opened.",
+    "emoji": "💻",
+    "category": "career",
+    "targetYear": "2026",
+    "manifested": true,
+    "manifestedOn": "2026-06-03",
+    "createdAt": "2026-10-04"
+  },
+  {
+    "id": "see-the-northern-lights",
+    "title": "Stand under the Northern Lights in Norway",
+    "note": "Cold air, warm heart, the sky on fire in green.",
+    "emoji": "🌌",
+    "category": "travel",
+    "targetYear": "2028",
+    "manifested": false,
+    "createdAt": "2026-10-04"
+  },
+  {
+    "id": "buy-new-iphone-hdfhu",
+    "title": "Buy New Iphone",
+    "note": "Want to Buy a New Phone my First Expensive Purchase",
+    "emoji": "✨",
+    "category": "wealth",
+    "manifested": true,
+    "manifestedOn": "2026-10-04",
+    "createdAt": "2026-10-04"
+  },
+  {
+    "id": "become-a-graduate-kzmco",
+    "title": "Become a Graduate",
+    "note": "It marks the completion of an important chapter of my life and opens the door to new opportunities, growth, and the career I’m building.",
+    "emoji": "🎓",
+    "category": "career",
+    "targetYear": "2026",
+    "manifested": true,
+    "manifestedOn": "2026-08-28",
+    "createdAt": "2026-10-04"
+  },
+  {
+    "id": "buy-new-personal-mac-book-6p7np",
+    "title": "Buy New Personal Mac Book",
+    "note": "It gives me a powerful personal machine for learning, building projects, improving my skills, and creating without limitations.",
+    "emoji": "📚",
+    "category": "wealth",
+    "manifested": false,
+    "createdAt": "2026-10-04"
+  },
+  {
+    "id": "buy-new-ipad-c9hr6",
+    "title": "Buy New Ipad",
+    "note": "It helps me learn, take notes, stay organized, and work more creatively and efficiently wherever I am.",
+    "emoji": "📚",
+    "category": "wealth",
+    "manifested": false,
+    "createdAt": "2026-10-04"
+  },
+  {
+    "id": "own-my-dream-harley-lnhk5",
+    "title": "Own My Dream Harley",
+    "note": "It represents freedom, independence, and a reward for the hard work I’ve put into building the life I want.",
+    "emoji": "🚀",
+    "category": "wealth",
+    "manifested": false,
+    "createdAt": "2026-10-04"
+  },
+  {
+    "id": "own-my-dream-aston-martin-vvwma",
+    "title": "Own My Dream Aston Martin",
+    "note": "It represents the success, freedom, and lifestyle I’m working hard to create for myself.",
+    "emoji": "🔥",
+    "category": "wealth",
+    "manifested": false,
+    "createdAt": "2026-10-04"
+  }
+]
