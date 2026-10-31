@@ -19,10 +19,6 @@
 
 ## 👋 Hey, I'm Aditya
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/15bcb645-c023-4613-aa9c-6a36697d3565" alt="Starlit AI Planet Workshop" width="100%" />
-</p>
-
 I'm a software engineer from India, and I like building systems that hold up at scale.
 
 These days I write backend code at **[Procol](https://www.procol.io/)** in Ruby on Rails, Python and FastAPI. I started there as an intern in April 2025 and joined full-time in June 2026, right after graduating. A lot of my work sits where APIs meet AI agents: building **Model Context Protocol (MCP)** connectors that let language models call real software.
