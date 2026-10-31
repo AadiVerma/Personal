@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://www.aditya7.com/">
-  <img width="2172" height="724" alt="Starlit AI Planet Workshop" src="https://github.com/user-attachments/assets/15bcb645-c023-4613-aa9c-6a36697d3565" />
+  <img src=".github/readme/hero.svg" alt="Aditya Verma: dreamer, builder, night-owl developer" width="100%" />
 </a>
 
 <br/>
@@ -18,6 +18,10 @@
 <img src=".github/readme/divider.svg" width="100%" alt="" />
 
 ## 👋 Hey, I'm Aditya
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/15bcb645-c023-4613-aa9c-6a36697d3565" alt="Starlit AI Planet Workshop" width="100%" />
+</p>
 
 I'm a software engineer from India, and I like building systems that hold up at scale.
 
